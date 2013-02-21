@@ -1,0 +1,164 @@
+<style type="text/css"> body {
+ font: 12px/1.6 "Helvetica Neue", Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+ background: gray;
+ color: #807e8a;
+}
+
+.content{
+	background-color:black;
+}
+.wrapper {
+	min-width:600px;
+	width:600px;
+	margin: 0 auto;
+	text-align:center;
+}
+
+@-webkit-keyframes myfirst
+{
+0%   {left:0px;}
+25%  {left: 10px;}
+50%  {left: 20px;}
+100% {left: 30px;}
+}
+
+
+@-webkit-keyframes rotate
+{
+0%   {-webkit-transform: rotate(0deg);}
+100% {-webkit-transform: rotate(360deg); }
+}
+
+.animation{
+	-webkit-animation:rotate 1s infinite; /* Safari and Chrome */
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:50% 33%;
+}
+
+.endAnimation{
+	-webkit-animation:rotate 1s forwards; /* Safari and Chrome */
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:50% 33%;
+}
+/*.wrapper *, .wrapper {
+	transition: width 2s, height 2s;
+}*/
+div.videoControl {
+	display:none;
+}
+div.video {
+	width:auto;
+	height:auto;
+}
+
+div.meter {
+	width:89%;
+	padding-left:1%;
+	vertical-align:middle;
+}
+
+#meter {
+	width:100%;
+}
+
+div.meterMain {
+	width:100%;
+}
+
+meter {
+	-webkit-appearance: none;
+}
+
+ meter::-webkit-meter-optimum-value {
+ background: #87C7DE;
+ background: -webkit-gradient(linear, left top, right bottom, from(#9784F5), to(#84C2F5)); /* for webkit browsers */
+ background: -moz-linear-gradient(top, #ccc, #000); /* for firefox 3.6+ */
+}
+
+div.timer {
+	/*text-align:right;*/
+	margin-top:10px;
+	z-index:1;
+	height:30px;
+}
+
+
+div.img {
+	width:3%;
+	background-image:url(../images/rightflasher.png);
+	background-repeat:no-repeat;
+	background-size:20px 20px;
+	margin-right:2%;
+	margin-left:1%;
+}
+div.vol {
+	width:15%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: green;
+    width: 10px;
+    height: 26px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 200px;
+    height:20px;
+}
+
+
+#range{
+	transition: opacity 2s;
+	-moz-transition: opacity 2s; /* Firefox 4 */
+	-webkit-transition: opacity 2s; /* Safari and Chrome */
+	-o-transition: opacity 2s; /* Opera */
+	/*-webkit-appearance: none;
+	position:relative;
+	background:black;*/
+	opacity:0;
+}
+
+div.vol:hover #range {
+	opacity:1.0;
+}
+
+div.subVol {
+	background-image:url(../images/volume_curves_down.png);
+	background-size:25px 25px;
+	background-repeat:no-repeat;
+	width:25%;
+	margin-right:2%;
+	z-index:10;
+	float:left;
+}
+div.volRange {
+	width:70%;
+	float:left;
+}
+
+
+/*.content:hover div.timer {
+	height:100px;
+	overflow:visible;
+}*/
+
+
+.content:hover div.timer {
+}
+
+div.durationTimer {
+	width:15%;
+	color:green;
+	float:right;
+}
+
+div.img, div.vol {
+	float:left;
+}
+div.timer div {
+	height:30px;
+}
+</style>

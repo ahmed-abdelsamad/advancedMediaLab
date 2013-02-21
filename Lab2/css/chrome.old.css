@@ -1,0 +1,106 @@
+<style type="text/css">
+body {
+	font: 12px/1.6 "Helvetica Neue", Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+	background: #FEFEF2;
+	color: #807e8a;
+}
+.wrapper {
+	min-width:600px;
+	width:600px;
+	margin: 0 auto;
+	text-align:center;
+}
+.wrapper *, .wrapper {
+	transition: width 2s, height 2s;
+	-moz-transition: width 2s, height 2s; /* Firefox 4 */
+	-webkit-transition: width 2s, height 2s; /* Safari and Chrome */
+	-o-transition: width 2s, height 2s; /* Opera */
+}
+
+div.videoControl {
+display:none;
+}
+
+div.video {
+	width:auto;
+	height:auto;
+	background-color:gray;
+}
+div.timer {
+	/*text-align:right;*/
+	margin-top:10px;
+	z-index:1;
+	top:-100px;
+}
+
+div.meter {
+	width:89%;
+	padding-left:1%;
+	vertical-align:middle;
+}
+#meter {
+	width:95%;
+}
+div.timer div {
+	float:left;
+	height:30px;
+}
+div.meterMain {
+	width:83%;
+}
+div.img {
+	width:3%;
+	background-image:url(../images/rightflasher.png);
+	background-repeat:no-repeat;
+	background-size:20px 20px;
+}
+div.durationTimer {
+	width:12%;
+	color:green;
+}
+div.vol {
+	width:2%;
+}
+div.vol:hover #range {
+	display:block;
+	left:-60px;
+	top:-158px;
+	position:relative;
+}
+#range {
+	-webkit-appearance: slider-vertical;
+	background:red;
+	left:-50px;
+	top:-120px;
+	position:relative;
+	display:none;
+}
+div.subVol {
+	background-image:url(../images/volume_curves_down.JPG);
+	background-size:20px 20px;
+	background-repeat:no-repeat;
+	width:100%;
+	z-index:10;
+}
+
+meter {
+	-webkit-appearance: none;
+}
+
+meter::-webkit-meter-optimum-value {
+ background: #87C7DE;
+ background: -webkit-gradient(linear, left top, right bottom, from(#9784F5), to(#84C2F5)); /* for webkit browsers */
+ background: -moz-linear-gradient(top, #ccc, #000); /* for firefox 3.6+ */
+}
+
+/*.content:hover div.timer {
+	height:100px;
+	overflow:visible;
+}*/
+
+
+.content:hover div.timer{
+
+}
+ 
+</style>

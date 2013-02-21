@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Video Player</title>
+</head>
+<link rel="stylesheet" href="css/chrome.css" type="text/css" media="screen" />
+<body>
+<div id='wrapper' class='wrapper'>
+  <div class="content">
+    <div class='videoControl'>
+      <button onclick="playPause()" >Play/Pause</button>
+      <button onclick="volUp()">VolumeUp</button>
+      <button onclick="volDown()">VolumeDown</button>
+      <button onclick="mute()">mute</button>
+      <button onclick="larger()">larger</button>
+      <button onclick="smaller()">smaller</button>
+    </div>
+    <div class="video" onClick="playPause();">
+      <video onTimeUpdate="updateTime()" width='320' volume='0.5'  id="videosample" onEnded="videoEnd()">
+        <source src="movie.ogg" type="video/ogg" />
+        Your browser does not support the video tag. </video>
+    </div>
+    <div class="progressBar">
+      <div class="meterMain">
+        <meter id='meter' value="2" min="0" max="10"></meter>
+      </div>
+    </div>
+    <div class="timer">
+      <div id='playPauseimg' class="img" onClick="playPause();"></div>
+      <!--<div class="meterMain">
+        <meter id='meter' value="2" min="0" max="10"></meter>
+      </div>-->
+      <div class="vol">
+        <div  id='volButton' onClick="mute()" class="subVol"></div>
+        <div  class="volRange" ><input id='range'  type="range" min="0" max="1" step="0.1" onChange="vol(this);" /></div>
+      </div>
+      <div class="durationTimer"><span id="timer"> 00:00</span> / <span id="duration">00:00</span></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"> 
+var vid		= document.getElementById("videosample"); 
+var playPauseSel = document.getElementById("playPauseimg");
+var volButton = document.getElementById('volButton');
+var volume  = 0.5;
+function playPause(){ 
+	if (vid.paused){ 
+	  vid.play();
+	  playPauseSel.className = 'img animation';
+	  //playPauseSel.style.webkitAnimation = 'rotate 1s infinite';
+	  //playPauseSel.style.backgroundImage = 'url(images/notpause.png)';
+	}else{
+	  vid.pause(); 
+	  playPauseSel.className = 'img';
+	  //playPauseSel.style.webkitAnimation = 'rotate 1s';
+	  //playPauseSel.style.backgroundImage = 'url(images/rightflasher.png)';
+	}
+}
+
+function mute(){
+	
+	vid.muted = !vid.muted;
+	if(vid.muted){
+		volButton.style.backgroundImage = 'url(images/volume_curves_mute.png)';
+	}else{
+		volButton.style.backgroundImage = 'url(images/volume_curves_down.png)';
+	}
+	
+}
+
+function volDown(){
+	vid.muted = false;
+	var vol = vid.volume - 0.1;
+	vid.volume = (vol < 0)?0:vol;
+}
+
+function volUp(){
+	vid.muted = false;
+	var vol = vid.volume + 0.1;
+	vid.volume = (vol < 0)?0:vol;
+}
+
+function larger(){
+	vid.width *=  2;
+	fixWrapperWidth(vid.width);
+}
+
+function smaller(){
+	vid.width /=  2;
+	fixWrapperWidth(vid.width);
+}
+
+function fixWrapperWidth(width){
+	var tempWidth = parseInt(width) * 2;
+	document.getElementById("wrapper").style.width = tempWidth + 'px';
+}
+
+function updateTime(){
+	var sec = parseInt(vid.currentTime);
+	var min = parseInt(sec/60);
+	sec = sec%60;
+	document.getElementById("timer").innerHTML = min + ':' + sec;
+	document.getElementById('meter').value =  vid.currentTime;	
+}
+window.onload = function(){
+	vid.volume = 0.5;
+	var sec = parseInt(vid.duration);
+	var min = parseInt(sec/60);
+	sec = sec%60;
+	document.getElementById("duration").innerHTML = min + ':' + sec;
+	document.getElementById('meter').max = vid.duration;
+	document.getElementById('range').value = vid.volume;
+}
+
+function vol(object){
+	vid.muted = false;
+	var vol = object.value;
+	vid.volume = vol;
+	if(vol > 0 ){
+		volButton.style.backgroundImage = 'url(images/volume_curves_down.png)';
+	}else{
+		volButton.style.backgroundImage = 'url(images/volume_curves_mute.png)';
+	}
+}
+</script>
+</body>
+</html>

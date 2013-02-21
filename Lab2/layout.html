@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+
+body{
+	/* Setting the default text color, size, page background and a font stack: */
+	font-size:0.825em;
+	color:#fcfcfc;
+	background-color:#355664;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* Headings: */
+
+h1,h2,h3{
+	font-family:"Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+	text-shadow:0 1px 1px black;
+}
+
+h1{
+	/* The logo text */
+	font-size:3.5em;
+	padding:0.5em 0 0;
+	text-transform:uppercase;
+}
+
+h3{
+	/* The slogan text */
+	font-family:forte,"Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+	font-size:2em;
+	font-weight:normal;
+	margin:0 0 1em;
+}
+
+
+h2{
+	font-size:2.2em;
+	font-weight:normal;
+	letter-spacing:0.01em;
+	text-transform:uppercase;
+}
+
+p{
+	line-height:1.5em;
+	padding-bottom:1em;
+}
+
+.line{
+	/* The dividing line: */
+	height:1px;
+	background-color:#24404c;
+	border-bottom:1px solid #416371;
+	margin:1em 0;
+	overflow:hidden;
+}
+
+div.article .line{
+	/* The dividing line inside of the article is darker: */
+	background-color:#15242a;
+	border-bottom-color:#204656;
+	margin:1.3em 0;
+}
+
+div.footer .line{
+	margin:2em 0;
+}
+
+
+
+/* The clearfix hack to clear the floats: */
+
+.clear:after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+/* Article styles: */
+
+#page{
+	width:960px;
+	margin:0 auto;
+	position:relative;
+}
+
+div.article{
+	background-color:#213E4A;
+	margin:3em 0;
+	padding:20px;
+	
+	text-shadow:0 2px 0 black;
+}
+
+div.figure{
+	border:3px solid #142830;
+	float:right;
+	height:300px;
+	margin-left:15px;
+	overflow:hidden;
+	width:500px;
+}
+
+div.figure:hover{
+	-moz-box-shadow:0 0 2px #4D7788;
+	-webkit-box-shadow:0 0 2px #4D7788;
+	box-shadow:0 0 2px #4D7788;
+}
+
+div.figure img{
+	margin-left:-60px;
+}
+
+/* Footer styling: */
+
+div.footer{
+	margin-bottom:30px;
+	text-align:center;
+	font-size:0.825em;
+}
+
+
+div.footer p{
+	margin-bottom:-2.5em;
+	position:relative;
+}
+
+div.footer a,div.footer a:visited{
+	color:#cccccc;
+	background-color:#213e4a;
+	display:block;
+	padding:2px 4px;
+	z-index:100;
+	position:relative;
+}
+
+div.footer a:hover{
+	text-decoration:none;
+	background-color:#142830;
+}
+
+div.footer a.by{
+	float:left;
+
+}
+
+div.footer a.up{
+	float:right;
+}
+</style>
+ <head>
+    <title>Layout</title>
+  </head> 
+ 
+ <body>
+
+    	<div class="section" id="page"> <!-- Defining the #page section with the section tag -->
+    
+            <div class="header"> <!-- Defining the header section of the page with the appropriate tag -->
+
+                <h1>Your Logo</h1>
+                <h3>and a fancy slogan</h3>
+                
+               
+            
+            </div>
+            
+            <div class="section" id="articles"> <!-- A new section with the articles -->
+
+				<!-- Article 1 start -->
+
+                <div class="line"></div>  <!-- Dividing line -->
+                
+                <div class="article" id="article1"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+                    <h2>Barack Obama</h2>
+                    
+                    <div class="line"></div>
+                    
+                    <div class="articleBody clear">
+                    
+                    	<div class="figure"> <!-- The figure tag marks data (usually an image) that is part of the article -->
+	                    	<a href="http://tutorialzine.com/2010/02/photo-shoot-css-jquery/"><img src="obama.jpg" width="620" height="340" alt="Image one" /></a>
+                        </div>
+                        
+                        <p>Barack Hussein Obama II (born August 4, 1961) is the 44th and current President of the United States. He is the first African American to hold the office. Obama previously served as a United States Senator from Illinois, from January 2005 until he resigned following his victory in the 2008 presidential election.</p>
+                        <p>Born in Honolulu, Hawaii, Obama is a graduate of Columbia University and Harvard Law School, where he was the president of the Harvard Law Review. He was a community organizer in Chicago before earning his law degree. He worked as a civil rights attorney in Chicago and taught constitutional law at the University of Chicago Law School from 1992 to 2004. He served three terms representing the 13th District in the Illinois Senate from 1997 to 2004. </p>
+                    </div>
+                </div>
+                
+				<!-- Article 1 end -->
+
+
+				<!-- Article 2 start -->
+
+                <div class="line"></div>
+                
+                <div class="article" id="article2">
+                    <h2>Nicolas Sarkozy</h2>
+                    
+                    <div class="line"></div>
+                    
+                    <div class="articleBody clear">
+                    	<div class="figure">
+	                    	<a href="http://tutorialzine.com/2010/01/sweet-tabs-jquery-ajax-css/"><img src="sarkozy.jpg" width="620" height="340" alt="Image two" /></a>
+                        </div>
+                        
+                        <p>Nicolas Sarkozy (born Nicolas Paul Stéphane Sarközy de Nagy-Bocsa; 28 January 1955) is the 23rd and current President of the French Republic and ex officio Co-Prince of Andorra. He assumed the office on 16 May 2007 after defeating the Socialist Party candidate Ségolène Royal 10 days earlier.</p>
+                        <p>Before his presidency, he was leader of the Union for a Popular Movement (UMP). Under Jacques Chirac's presidency he served as Minister of the Interior in Jean-Pierre Raffarin's (UMP) first two governments (from May 2002 to March 2004), then was appointed Minister of Finances in Raffarin's last government (March 2004 to May 2005) and again Minister of the Interior in Dominique de Villepin's government (2005–2007).</p>
+                    </div>
+                </div>
+                
+				<!-- Article 2 end -->
+
+            </div>
+
+        <div class="footer"> <!-- Marking the footer section -->
+
+          <div class="line"></div>
+           
+           <p>Copyright 2010 - YourSite.com</p> <!-- Change the copyright notice -->
+           
+           <a href="#" class="up">Go UP</a>
+           <a href="http://tutorialzine.com/2010/02/free-xhtml-css3-website-template/" class="by">Template by Tutorialzine</a>
+           
+
+        </div>
+            
+		</div> <!-- Closing the #page section -->
+        
+        <!-- JavaScript Includes -->
+          
+    </body>
+</html>
