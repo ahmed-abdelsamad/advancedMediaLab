@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+#div1 {
+	width:400px;
+	height:100px;
+	padding:10px;
+	border:1px solid #aaaaaa;
+	text-align:center;
+	z-index:100;
+}
+#mapholder{
+	width:600px;
+	height:600px;
+}
+
+img{
+	z-index:1;
+}
+</style>
+
+</head>
+<body>
+<img id="drag1" lat='30.046502' ondrop="alert('hello');" lon='31.224411' draggable="true" ondragstart="drag(event)" src="towercairo.jpg" width="100" height="100" /> 
+<img id="drag2" lat='-33.857119' ondrop='return;' lon='151.214919' draggable="true" ondragstart="drag(event)" src="sydneyoperahouse.jpg" width="100" height="100" /> 
+<img id="drag3" lat='48.858871' ondrop='return;' lon='2.294211' draggable="true" ondragstart="drag(event)" src="eiffel.jpg" width="100" height="100" /> 
+<img id="drag4" lat='41.902305,' ondrop='return;' lon='12.458137' draggable="true" ondragstart="drag(event)" src="vatican.jpg" width="100" height="100" />
+<div id="div1"  ondragover="allowDrop(event)"><img /></div>
+<br />
+<div id="mapholder"></div>
+</body>
+</html>
+<script type="text/javascript">
+document.getElementById('div1').addEventListener('drop',drop,true);
+var imageLat = document.getElementById('drag1');
+function allowDrop(ev){
+	ev.preventDefault();
+}
+
+function drag(ev){
+	ev.dataTransfer.setData("lat",ev.target.getAttribute('lat'));
+	ev.dataTransfer.setData("lon",ev.target.getAttribute('lon'));
+	ev.dataTransfer.setData("id",ev.target.id);
+}
+
+
+function drop(ev){
+	
+	imageLat.style.borderStyle = '';
+	imageLat.style.borderColor = '';
+	var lat=ev.dataTransfer.getData("lat");
+	var lon=ev.dataTransfer.getData("lon");
+	id=ev.dataTransfer.getData("id");
+	imageLat = document.getElementById(id);
+	//ev.target.children[0].src = imageLat.src
+	
+	ev.target.style.backgroundImage = 'url('+ imageLat.src + ')';
+	ev.target.style.backgroundSize = imageLat.width + 'px ' + imageLat.height + 'px'; 
+	ev.target.style.backgroundRepeat = 'no-repeat';
+	ev.target.style.backgroundPosition = 'center';
+	delete window.tmp;
+	
+	var coords = lat + ',' + lon;
+	document.getElementById(id).style.borderStyle = 'solid';
+	document.getElementById(id).style.borderColor = 'green';
+	var img_url = 'http://maps.google.co.uk?q='+ coords+ '&zoom=60&output=embed';
+	document.getElementById("mapholder").innerHTML="<iframe style='width:600px;height:480px' src='"+img_url+"'></iframe>";
+	ev.preventDefault();
+}
+</script>
