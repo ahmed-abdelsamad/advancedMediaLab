@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document 
+0%   {background-image:url(image/Baljeet%20Nagar/DSC_0027.JPG); }
+25%  {background-image:url(image/Baljeet%20Nagar/DSC_0045.JPG); }
+50%  {background-image:url(image/Chilla%20Khader/_DSC0246.JPG); }
+75%  {background-image:url(image/Chilla%20Khader/DSC_0309.JPG); }
+100% {background:red; }
+
+@keyframes myfirst
+{
+from {background-: red;}
+to {background: yellow;}
+}
+
+@-moz-keyframes myfirst /* Firefox 
+{
+0%   {background-image:url(image/Baljeet%20Nagar/DSC_0027.JPG); }
+25%  {background-image:url(image/Baljeet%20Nagar/DSC_0045.JPG); }
+50%  {background-image:url(image/Chilla%20Khader/_DSC0246.JPG); }
+75%  {background-image:url(image/Chilla%20Khader/DSC_0309.JPG); }
+100% {background-image:url(image/Chilla%20Khader/DSC_0309.JPG); }
+}*/
+body{
+	background-color:#9EA39F;
+}
+#leftMenu{
+	background-color:blue;
+	width:200px;
+	height:300px;
+}
+.underline{
+	text-decoration:underline;
+}
+#head{
+	height: 42px;
+}
+.paragraph{
+	font-size: 19px;
+	line-height: 30px;
+}
+.newspaper
+{
+
+
+font-size: 19px;
+line-height: 40px;
+-moz-column-count:3; /* Firefox */
+-webkit-column-count:3; /* Safari and Chrome */
+column-count:3;
+
+-moz-column-gap:40px; /* Firefox */
+-webkit-column-gap:40px; /* Safari and Chrome */
+column-gap:40px;
+}
+
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+from {background-: red;}
+to {background: yellow;}
+}
+
+
+#wrapper {
+	font-family:EuroStyleNormal;
+   margin:auto;
+	 width: 1368px;
+
+}
+
+#body{
+	height: 400px;
+    margin-left: 53px;
+	width: 1247px;
+	margin-top: -13px;
+}
+p{
+	text-align:justify;
+}
+
+.menu{
+    width: 100%;
+	margin-left: 20px;
+}
+.menu ul{
+    margin: 0; padding: 0;
+    float: left;
+}
+.subMenu{
+	width:790px;
+	margin-left:285px;
+}
+
+li{
+	text-align:center;
+    display: inline;
+}
+ 
+
+.menuItem, .last{
+    float: left; text-decoration: none;
+    color: white;
+    padding: 10.5px 11px;
+	width:240px;
+	height:20px;
+	border-width:1px;
+    background-color: #333; 
+}
+
+.last{
+	width:146px;
+	/*float: left; text-decoration: none;
+    color: white;
+    padding: 10.5px 11px;
+    background-color: #333;
+	width:146px;
+	height:20px;
+	border-width:1px; */
+}
+
+.menuItem:hover , .last:hover {
+	background-color:grey;
+	/*border-style:inset;
+	border-width:2px;
+	border-color:white;
+	width:238px;
+	height:18px;*/
+}
+
+.last:hover {
+	/*width:144px;*/
+}
+
+
+
+
+
+ 
+.menu ul li a:visited{
+    color: white;
+}
+ 
+/*.menu ul li a:hover, .menu ul li .current{
+    color: #fff;
+    background-color:#0b75b2;
+} */
+
+.splitter{
+	 background-color: #9EA39F;
+    float: left;
+    height: 41px;
+    width: 2px;
+}
+
+
+.scrollable {
+    float: left;
+    height: 110px;
+    overflow: hidden;
+    position: relative;
+    width: 680px;
+}
+.scrollable .items {
+    clear: both;
+    position: absolute;
+    width: 20000em;
+}
+
+.active{
+	background-color: black;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    float: left;
+    height: 75px;
+    margin: 20px 5px 20px 21px;
+    padding: 2px;
+    width: 100px;
+
+}
+.normal{
+	background-color: Azure;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    float: left;
+    height: 75px;
+    margin: 20px 5px 20px 21px;
+    padding: 2px;
+    width: 100px;
+}
+
+
+.items div {
+    float: left;
+    width: 680px;
+}
+
+
+	
+	
+	

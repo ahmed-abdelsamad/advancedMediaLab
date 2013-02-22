@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Gallery</title>
+<link href="CSS/trial.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="body">
+    <div style="margin-left:400px;"> <img id="Img" src="http://farm7.static.flickr.com/6062/6072764490_8c34e080e9.jpg" width="500" height="375"/> </div>
+    <div style="margin-left:220px;margin-top:16px;">
+      <div style="float:left">
+        <button onclick="moveRight();"> Press me </button>
+      </div>
+      <div class="scrollable" >
+        <div class="items" id="move" style="left:0px;">
+          <div> <img class="active"  id="firstPic" onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);" src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> </div>
+          <div> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> </div>
+        </div>
+      </div>
+      <div style="float:left">
+        <button onclick="moveLeft();" > Press me </button>
+      </div>
+    </div>
+  </div>
+  <!-- end of body --> 
+</div>
+</body>
+<script>
+var turn = 0;
+var left = 0;
+var posFinal = 0;
+var posNow =0;
+var move;
+var animation = true;
+var selected = document.getElementById("firstPic");
+function moveLeft(){
+	if(animation){
+		if(turn == 1){
+			return;
+		}
+		animation = false;
+	move = document.getElementById("move");
+	posFinal = posFinal -680;
+	posNow = parseInt(move.style.left);
+	setTimeout('animateLeft()',10);  
+	}else{
+		alert('no can do');
+	}
+}
+function moveRight(){
+	if(animation){
+		if(turn == 0){
+			return;
+		}
+		animation = false;
+	move = document.getElementById("move");
+	posFinal = posFinal  + 680;
+	posNow = parseInt(move.style.left);
+	setTimeout('animateRight()',10); 
+	}else{
+		alert('no can do');
+	}
+}
+function animateRight(){
+	posNow = posNow + 10;
+	move.style.left = posNow + 'px';
+	if(posNow >= posFinal){
+		turn --;
+		animation = true;
+		return;
+	}else{
+		setTimeout('animateRight()',10);
+	}
+}
+function animateLeft(){
+	move.style.left = posNow + 'px';
+	posNow = posNow - 10;
+	if(posNow < posFinal){
+		turn ++;
+		animation = true;
+		return;
+	}else{
+		setTimeout('animateLeft()',10);
+	}
+	
+}
+
+function changePicture(clicked){
+	selected.className = "normal";
+	var url = clicked.src.replace("_t", "");
+	document.getElementById('Img').src = url;
+	clicked.className = "active";
+	selected = clicked;
+}
+</script>
+</html>
