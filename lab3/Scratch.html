@@ -40,23 +40,18 @@ var objectLength = JString.length;
 <script>
 var currentImg = 0;
 window.onload = function(){
-
 	var item = $('#thumbs img:first');
 	item.attr('class','active');
-	//$('#slider img').attr('src',item.attr('src'));
-
 }
 
 function prev(){
-	console.log('prev');
-	$('#slider :last').appendTo('#slider');
+	$('#slider img:gt(0)').hide();
+	$('#slider :last').fadeIn();
+	$('#slider :last').prependTo('#slider');
 }
 function next(){
-	//console.log('test');
-	//$('#slider img:gt(0)').hide();
-	//$('#slider :first-child').fadeOut().next('#slider-3').fadeIn().end().appendTo('#slider');
-	$('#slider :first-child').appendTo('#slider');
-//		$('#slider-3').fadeIn().end().appendTo('#slider');
+	$('#slider img:gt(0)').hide();
+	$('#slider :first-child').fadeOut().next('img').fadeIn().end().appendTo('#slider');
 }
 </script>
 <script>
