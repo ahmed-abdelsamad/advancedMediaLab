@@ -33,25 +33,89 @@ var objectLength = JString.length;
 	}
     </script> 
   </div>
-  <div id='controls'> <a onclick='prev()' id='prev'>Prev</a> <a id='playPause'>Play/Pause</a> <a   onclick="next()" id='next'>Next</a> </div>
+  <div id='controls'> <a  id='prev'>Prev</a> <a id='playPause'>Play/Pause</a> <a   id='next'>Next</a> </div>
 </div>
 </body>
 </html>
 <script>
+$('#next').click ( function (){
+	next()
+});
+
+$('#prev').click ( function (){
+	prev()
+});
+var play = false;
+var interval;
+$('#playPause').click( function(){
+	play = !play;
+	if(play){
+	 interval = setInterval(function (){
+		if(play){
+			goForward();
+		}
+		}, 3000);
+	}else{
+		clearInterval(interval);
+	}
+});
+
+document.onkeydown=function(e){
+		switch(e.which){
+			case 39:next();break;
+			case 37:prev().click();break;
+			case 32:$("#playPause").click();break;
+		}
+}
+
 var currentImg = 0;
+var current;
 window.onload = function(){
 	var item = $('#thumbs img:first');
-	item.attr('class','active');
+	current = item.attr('class','active');
 }
 
 function prev(){
+	$('#slider :first-child').removeAttr('style');
 	$('#slider img:gt(0)').hide();
-	$('#slider :last').fadeIn();
+	var id = $('#slider :last').attr('id');
+	var temp = '#' + id.replace('slider','Sslider');
+	$('#slider :last').slideDown(2000);
 	$('#slider :last').prependTo('#slider');
+	current.attr('class','normal');
+	current = $(temp);
+	current.attr('class','active');
 }
 function next(){
 	$('#slider img:gt(0)').hide();
-	$('#slider :first-child').fadeOut().next('img').fadeIn().end().appendTo('#slider');
+	//$('#slider :first-child').next('img').fadeIn(2000).end().appendTo('#slider');
+	var id = $('#slider :first-child').next('img').attr('id');
+	var temp = '#' + id.replace('slider','Sslider');
+	current.attr('class','normal');
+	current = $(temp);
+	current.attr('class','active');
+	$('#slider :first-child').next('img').css('display','block');
+	$('#slider :first-child').next('img').animate({opactiy:1,borderSpacing: 360 }, {
+    step: function(now,fx) {
+      $(this).css('-webkit-transform','rotate('+now+'deg)');
+      $(this).css('-moz-transform','rotate('+now+'deg)'); 
+      $(this).css('transform','rotate('+now+'deg)');  
+    },
+    duration:'slow'
+},'linear').end().appendTo('#slider').end().removeAttr('style');
+
+}
+
+function goForward(){
+	$('#slider img:gt(0)').hide();
+	
+	var id = $('#slider :first-child').next('img').attr('id');
+	var temp = '#' + id.replace('slider','Sslider');
+	current.attr('class','normal');
+	current = $(temp);
+	current.attr('class','active');
+	$('#slider :first-child').next('img').fadeIn(2000).end().appendTo('#slider');
+
 }
 </script>
 <script>
