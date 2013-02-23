@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Slide Show</title>
+<link href="CSS/scratch.css" rel="stylesheet" type="text/css" />
+<script src="jquery.js"></script>
+</head>
+<script>
+var JString=[{"title":"Sharm El Sheikh","url":"http://memphistours.files.wordpress.com/2011/11/nile_river_aswan_egypt.jpg"},
+		{"title":"Aswan","url":"http://www.richard-seaman.com/Wallpaper/Travel/Egypt/Dahab1.jpg"},
+		{"title":"Alexandria","url":"http://0.tqn.com/d/goafrica/1/0/-/E/VI0053_Alexandria_03BD.jpg"},
+		{"title":"Dahab","url":"http://www.richard-seaman.com/Wallpaper/Travel/Egypt/Dahab1.jpg"},
+		{"title":"Cairo","url":"http://upload.wikimedia.org/wikipedia/commons/b/bb/Cairo,_evening_view_from_the_Tower_of_Cairo,_Egypt,_Oct_2004.jpg"}];
+var objectLength = JString.length;
+</script>
+<body>
+<div id='wrapper'>
+  <div id='caption'> </div>
+ <script>
+ 	document.write("<div id='slider'>");
+	for(j = 0 ; j < objectLength; j ++){
+		var string = (JString[j].url);
+		document.write("<img  width='640' height='480' id='slider-"+ j +"' src='"+ string +"' /> ");
+	}
+	document.write("</div>");
+  </script>
+  <div id='thumbs'> 
+    <script>
+	for(i = 0 ; i < objectLength; i++){
+		var obj = JString[i];
+		document.write("<img class='normal' id='Sslider-"+ i +"' class=''  src='"+ obj.url+"' /> ");
+	}
+    </script> 
+  </div>
+  <div id='controls'> <a onclick='prev()' id='prev'>Prev</a> <a id='playPause'>Play/Pause</a> <a   onclick="next()" id='next'>Next</a> </div>
+</div>
+</body>
+</html>
+<script>
+var currentImg = 0;
+window.onload = function(){
+
+	var item = $('#thumbs img:first');
+	item.attr('class','active');
+	//$('#slider img').attr('src',item.attr('src'));
+
+}
+
+function prev(){
+	console.log('prev');
+	$('#slider :last').appendTo('#slider');
+}
+function next(){
+	//console.log('test');
+	//$('#slider img:gt(0)').hide();
+	//$('#slider :first-child').fadeOut().next('#slider-3').fadeIn().end().appendTo('#slider');
+	$('#slider :first-child').appendTo('#slider');
+//		$('#slider-3').fadeIn().end().appendTo('#slider');
+}
+</script>
+<script>
+   
+$(function(){
+ 
+    // $('#slider img:gt(0)').hide();
+    // setInterval(function(){$('#slider :first-child').fadeOut().next('img').fadeIn().end().appendTo('#slider');}, 3000);
+     });
+   
+</script>
+
+ 
+

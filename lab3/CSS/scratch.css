@@ -1,0 +1,51 @@
+/* CSS Document */
+#wrapper{
+	text-align:center;
+}
+
+#slider{
+	margin:0 auto;
+	overflow:hidden;
+	width:640px;
+	height:480px;
+}
+
+#slider img{
+	position:relative;
+	top:0px;
+	left:0px;
+}
+#thumbs{
+	height:130px;
+	padding:6px;
+	margin:0 auto;
+}
+
+#thumbs img{
+	width:106px;
+	height:106px;
+}
+
+#thumbs img{
+	position:relative;
+	cursor:pointer;
+	top:10px;
+	-webkit-transition: width 0.5s,height 0.5s;
+}
+#thumbs img:hover{
+	width:116px;
+	height:116px;
+}
+.normal{
+	border:1px solid black;	
+}
+
+.active{
+	border:1px solid white;	
+}
+
+#controls{
+	width:200px;
+	height:30px;
+	margin:0 auto;
+}
