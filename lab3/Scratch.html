@@ -21,7 +21,8 @@ var objectLength = JString.length;
  	document.write("<div id='slider'>");
 	for(j = 0 ; j < objectLength; j ++){
 		var string = (JString[j].url);
-		document.write("<img  width='640' height='480' id='slider-"+ j +"' src='"+ string +"' /> ");
+		var caption = JString[j].title;
+		document.write("<img  width='640' height='480' id='slider-"+ j +"' src='"+ string +"' caption='"+ caption+" ' /> ");
 	}
 	document.write("</div>");
   </script>
@@ -29,11 +30,11 @@ var objectLength = JString.length;
     <script>
 	for(i = 0 ; i < objectLength; i++){
 		var obj = JString[i];
-		document.write("<img class='normal' id='Sslider-"+ i +"' class=''  src='"+ obj.url+"' /> ");
+		document.write("<img onclick='fetch(this.id)' class='normal' id='Sslider-"+ i +"' class=''  src='"+ obj.url+"' /> ");
 	}
     </script> 
   </div>
-  <div id='controls'> <a  id='prev'>Prev</a> <a id='playPause'>Play/Pause</a> <a   id='next'>Next</a> </div>
+  <div id='controls'> <a  id='prev'>Prev</a> <a  style="padding-left:10px;padding-right:10px;"id='playPause'>Play</a> <a   id='next'>Next</a> </div>
 </div>
 </body>
 </html>
@@ -50,29 +51,39 @@ var interval;
 $('#playPause').click( function(){
 	play = !play;
 	if(play){
+		$(this).html('Pause');
+	}else{
+		$(this).html('Play');
+	}
+	if(play){
+		goForward();
 	 interval = setInterval(function (){
 		if(play){
 			goForward();
 		}
-		}, 3000);
+		}, 2000);
 	}else{
 		clearInterval(interval);
 	}
 });
 
-document.onkeydown=function(e){
-		switch(e.which){
-			case 39:next();break;
-			case 37:prev().click();break;
-			case 32:$("#playPause").click();break;
-		}
-}
+
 
 var currentImg = 0;
 var current;
 window.onload = function(){
 	var item = $('#thumbs img:first');
 	current = item.attr('class','active');
+	$('#caption').html($('#slider :first-child').attr('caption'));
+	
+	document.onkeydown=function(e){
+		switch(e.which){
+			case 39:next();break;
+			case 37:prev();break;
+			case 32:$("#playPause").click();break;
+		}
+	}
+
 }
 
 function prev(){
@@ -85,6 +96,7 @@ function prev(){
 	current.attr('class','normal');
 	current = $(temp);
 	current.attr('class','active');
+	$('#caption').html($('#slider :first-child').attr('caption'));
 }
 function next(){
 	$('#slider img:gt(0)').hide();
@@ -103,8 +115,23 @@ function next(){
     },
     duration:'slow'
 },'linear').end().appendTo('#slider').end().removeAttr('style');
+	$('#caption').html($('#slider :first-child').attr('caption'));
+}
+
+function nextNoAnimation(){
+		$('#slider img:gt(0)').hide();
+	//$('#slider :first-child').next('img').fadeIn(2000).end().appendTo('#slider');
+	var id = $('#slider :first-child').next('img').attr('id');
+	var temp = '#' + id.replace('slider','Sslider');
+	current.attr('class','normal');
+	current = $(temp);
+	current.attr('class','active');
+	$('#slider :first-child').next('img').css('display','block');
+	$('#slider :first-child').appendTo('#slider');
+
 
 }
+
 
 function goForward(){
 	$('#slider img:gt(0)').hide();
@@ -115,17 +142,20 @@ function goForward(){
 	current = $(temp);
 	current.attr('class','active');
 	$('#slider :first-child').next('img').fadeIn(2000).end().appendTo('#slider');
-
+	$('#caption').html($('#slider :first-child').attr('caption'));
 }
-</script>
-<script>
-   
-$(function(){
- 
-    // $('#slider img:gt(0)').hide();
-    // setInterval(function(){$('#slider :first-child').fadeOut().next('img').fadeIn().end().appendTo('#slider');}, 3000);
-     });
-   
+
+function fetch(id){
+	var formatedId = id.replace('Ss','s');
+	
+	var currentId = ($('#slider img:first-child').attr('id'));
+	
+	while(currentId != formatedId){
+		nextNoAnimation();
+		currentId = ($('#slider img:first-child').attr('id'));
+	}
+	$('#caption').html($('#slider :first-child').attr('caption'));
+}
 </script>
 
  
