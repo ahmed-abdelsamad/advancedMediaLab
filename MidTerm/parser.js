@@ -7,6 +7,30 @@
  */
 
 
+
+/*
+ *  Meta Class
+ */
+ 
+function Meta(name,category,lat,lon,image){
+	this.name = name;
+	this.category = category;
+	this.lat = lat;
+	this.lon = lon;
+	this.image = image;
+}
+
+
+/*
+ * Opinion Class
+ */
+ 
+function opinion(author,image,rating,opinion){
+	this.author  = author;
+	this.image   = image;
+	this.rating  = rating;
+	this.opinion = opinion;
+}
 /*
  * Generic Class for Item
  */ 
@@ -18,6 +42,16 @@ function Item(){
 	this.setReviewScore = function(reviewScore){
 		this.reviewScore = reviewScore;
 	}
+	
+	this.setMeta = function(meta){
+		this.meta = meta;
+	}
+	
+	this.setOpinions = function(value){
+        this.opinions = value;
+	} 
+	
+	this.opinions = Array();
 }
 
 
@@ -111,10 +145,17 @@ var JString = [{
 
 var restaurant;
 for(var i = 0;i < 1;i++){
-	var x = JString[0]['item-type'];
+	var x = JString[i]['item-type'];
 	restaurant = createItem(x);
 	
+	
+	if((trustPercent = JString[i]['trust-percent']) != null)
+		restaurant.setTrustPercent(trustPercent);
+	
+	if((reviewScore = JString[i]['review-score']) != null)
+		restaurant.setReviewScore(reviewScore);
+		
 }
 
-restaurant.setTrustPercent(100);
+
 
