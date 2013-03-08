@@ -12,11 +12,19 @@
  *  Meta Class
  */
  
-function Meta(name,category,lat,lon,image){
+function Meta(name,category,location,image){
+	if(name != null)
 	this.name = name;
+	
+	if(category != null)
 	this.category = category;
-	this.lat = lat;
-	this.lon = lon;
+	
+	if(location != null){
+		this.lat = location['lat'];
+		this.lon = location['lon'];	
+	}
+	
+	if(image != null)
 	this.image = image;
 }
 
@@ -35,20 +43,31 @@ function opinion(author,image,rating,opinion){
  * Generic Class for Item
  */ 
 function Item(){
-	this.setTrustPercent = function(trust){
-		this.trust = trust;
+	this.setTrustPercent = function(val){
+		if(val != null)
+		this.trust = val;
 	}
 	
-	this.setReviewScore = function(reviewScore){
-		this.reviewScore = reviewScore;
+	this.setReviewScore = function(val){
+		if(val != null)
+		this.reviewScore = val;
 	}
 	
-	this.setMeta = function(meta){
-		this.meta = meta;
+	this.setMeta = function(val){
+		if(val != null)
+		this.meta = new Meta(val['name'],val['category'],val['location'],val['image']);
+	}
+		
+	this.setOpinions = function (val,count){
+		/* Set Opinions*/
 	}
 	
-	this.setOpinions = function(value){
-        this.opinions = value;
+	this.setOpinion = function(val){
+		if(val != null){
+			this.opinionCount = val['count']; 
+			if(val['list'] != null)
+				this.setOpinions(val['list'],this.opinionCount);
+		}
 	} 
 	
 	this.opinions = Array();
@@ -61,13 +80,23 @@ function Item(){
  
 Restaurant.prototype = new Item();        // Set prototype to Person's
 Restaurant.prototype.constructor = Restaurant;   // Set constructor back to Robot
-
+Software.prototype = new Item();        // Set prototype to Person's
+Software.prototype.constructor = Software;   // Set constructor back to Robot
+Car.prototype = new Item();        // Set prototype to Person's
+Car.prototype.constructor = Car;   // Set constructor back to Robot
 function Restaurant(){
 	
 	this.type = 'restaurant';
 	
 }
 
+function Software(){
+	this.type = 'software';
+}
+
+function Car(){
+	this.type = 'car';
+}
 /*
  *  Item Factory
  *
@@ -76,8 +105,8 @@ function Restaurant(){
 function createItem(type){
 	 switch(type){
 		 case 'restaurant':return new Restaurant();break;
-		 case 'software':break;
-		 case 'car':break;
+		 case 'software':return new Software();break;
+		 case 'car':return new Car();break;
 	 }
 }
 
@@ -143,17 +172,18 @@ var JString = [{
 			];
 			
 
-var restaurant;
-for(var i = 0;i < 1;i++){
+var items = Array();
+for(var i = 0;i < JString.length;i++){
 	var x = JString[i]['item-type'];
-	restaurant = createItem(x);
+	var tempItem = createItem(x);
 	
-	
-	if((trustPercent = JString[i]['trust-percent']) != null)
-		restaurant.setTrustPercent(trustPercent);
-	
-	if((reviewScore = JString[i]['review-score']) != null)
-		restaurant.setReviewScore(reviewScore);
+	tempItem.setTrustPercent(JString[i]['trust-percent']);
+	tempItem.setReviewScore(JString[i]['review-score']);
+	tempItem.setMeta(JString[i]['meta']);
+	tempItem.setOpinion(JString[i]['opinions']);
+	//tempItem.handleMeta(JString[i]['opinions']);
+			
+	items.push(tempItem);
 		
 }
 
