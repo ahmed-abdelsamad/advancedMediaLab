@@ -15,7 +15,7 @@ body{
 	margin: 0 auto;
 	height:80%;
 	width:50%;
-	background-color:blue;
+	padding:10px;
 }
 
 #footer{
@@ -23,4 +23,32 @@ body{
 	height:10%;
 	min-height:30px;
 	background-color:black;
+}
+
+.star{
+	position:absolute;
+	left:10px;
+	top:10px;
+	height:30px;
+	width:30px;
+	background-color:gray;
+	/* Add an Image*/
+}
+
+.item{
+	box-shadow: 0px 0px 10px #888888;
+	border:2px hidden;
+	border-radius:10px;
+	width:500px;
+	height:400px;
+	position:absolute;
+}
+.img{
+	width:480px;
+	margin-left:10px;
+	margin-right:10px;
+	height:360px;
+	background-color:green;
+	border:2px hidden;
+	border-radius:10px 10px 0px 0px;
 }

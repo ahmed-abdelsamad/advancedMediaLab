@@ -6,9 +6,11 @@
  * Your code will be tested using manipulated JSON objects!
  */
 
+var imgType = '.png';
+
 JString = [{
 					"item-type":"restaurant",
-					 "trust-percent":"30",
+					 "trust-percent":"91",
 					 "review-score":"80",
 					 "meta": {
 						"name": "Pizza hut",
@@ -97,6 +99,8 @@ function Item(){
 	this.setTrustPercent = function(val){
 		if(val != null)
 		this.trust = val;
+		else
+		this.trust = 0;
 	}
 	
 	this.setReviewScore = function(val){
@@ -118,6 +122,8 @@ function Item(){
 	
 		if(image != null)
 		this.image = image;
+		else
+		this.image = this.type+  imgType;
 		
 	}
 	
@@ -144,9 +150,11 @@ function Item(){
 		
 		
 		header = $('<h2>').html(this.name);
-		img = $('<img>').attr('src',this.image);
-		div = $('<div>').append(header).append(img);
-		
+		img = $('<img>').attr('src',this.image).addClass('img');
+		div = $('<div>').addClass('item').append(img).append(header);
+		if(this.trust > 90){
+			div.append($('<div>').addClass('star'));
+		}
 		/*div = document.createElement("div");
 		content = document.createElement("h1");
 		content.innerHTML  = this.type;
