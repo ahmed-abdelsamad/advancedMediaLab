@@ -14,7 +14,7 @@ body{
 	position:relative;
 	margin: 0 auto;
 	height:80%;
-	width:50%;
+	width:80%;
 	padding:10px;
 }
 
@@ -42,12 +42,13 @@ body{
 	width:500px;
 	height:400px;
 	position:absolute;
+	text-align:center;
 }
 .img{
-	width:480px;
-	margin-left:10px;
-	margin-right:10px;
-	height:360px;
+	/*width:480px;*/
+	/*margin-left:10px;
+	margin-right:10px;*/
+	/*height:360px;*/
 	background-color:green;
 	border:2px hidden;
 	border-radius:10px 10px 0px 0px;
