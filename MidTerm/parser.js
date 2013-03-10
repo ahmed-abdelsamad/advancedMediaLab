@@ -6,7 +6,7 @@
  * Your code will be tested using manipulated JSON objects!
  */
 
-var imgType = '.png';
+var imgType = '.jpg';
 
 JString = [{
 					"item-type":"restaurant",
@@ -94,6 +94,7 @@ function opinion(author,image,rating,opinion){
 function Item(){
 	
 	this.type = '';
+	this.id;
 	this.opinions = Array();
 	
 	this.setTrustPercent = function(val){
@@ -151,7 +152,7 @@ function Item(){
 		
 		header = $('<h2>').html(this.name);
 		img = $('<img>').attr('src',this.image).addClass('img');
-		div = $('<div>').addClass('item').append(img).append(header);
+		div = $('<div>').addClass('item').attr('itemId',this.id).append(img).append(header);
 		if(this.trust > 90){
 			div.append($('<div>').addClass('star'));
 		}
@@ -175,29 +176,30 @@ Software.prototype = new Item();        // Set prototype to Person's
 Software.prototype.constructor = Software;   // Set constructor back to Robot
 Car.prototype = new Item();        // Set prototype to Person's
 Car.prototype.constructor = Car;   // Set constructor back to Robot
-function Restaurant(){
-	
+function Restaurant(id){
 	this.type = 'restaurant';
-	
+	this.id = id;
 }
 
-function Software(){
+function Software(id){
 	this.type = 'software';
+	this.id = id;
 }
 
-function Car(){
+function Car(id){
 	this.type = 'car';
+	this.id = id;
 }
 /*
  *  Item Factory
  *
  */
  
-function createItem(type){
+function createItem(type,id){
 	 switch(type){
-		 case 'restaurant':return new Restaurant();break;
-		 case 'software':return new Software();break;
-		 case 'car':return new Car();break;
+		 case 'restaurant':return new Restaurant(id);break;
+		 case 'software':return new Software(id);break;
+		 case 'car':return new Car(id);break;
 	 }
 }
 
@@ -206,7 +208,7 @@ function createItem(type){
 var items = Array();
 for(i = 0;i < JString.length;i++){
 	x = JString[i]['item-type'];
-	tempItem = createItem(x);
+	tempItem = createItem(x,i);
 	
 	tempItem.setTrustPercent(JString[i]['trust-percent']);
 	tempItem.setReviewScore(JString[i]['review-score']);

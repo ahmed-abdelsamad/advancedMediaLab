@@ -26,7 +26,51 @@
 </html>
 <script>
 	window.onload = function(){
-		setTimeout(function () { $('#content').html(items[0].print(100,100,100,200));},100);
+		totalWidth = $(window).width();
+		width = (totalWidth*0.8)/3;
+		width -= 10;
+		setTimeout(function () {
+			currentLeft = 0;
+			//width = 500;
+			tempItem = items[0].print();
+			img = tempItem.find('img');
+			imgVal = new Image();
+			imgVal.src = img.attr('src');	
+			currentWidth = width;
+			if(imgVal.width > (width-10)){
+				imgVal.width(width-10);
+			}else{
+				currentWidth = imgVal.width;
+			}
+			tempItem.css({
+			   left : currentLeft+'px',
+			   top : '10px',
+			   width: currentWidth+'px'
+			});
+			currentLeft += currentWidth+10;
+			$('#content').html(tempItem);
+			for(i = 1;i<items.length;i++){
+				tempItem = items[i].print();
+				img = tempItem.find('img');
+				imgVal = new Image();
+				imgVal.src = img.attr('src');	
+				currentWidth = width;
+				if(imgVal.width > (width-10)){
+					imgVal.width(width-10);
+				}else{
+					currentWidth = imgVal.width;
+				}
+				tempItem.css({
+				   left : currentLeft+'px',
+				   top : '10px',
+				   width: currentWidth+'px'
+				});
+				currentLeft += currentWidth + 10;
+				$('#content').append(tempItem);
+			}
+			},50);
+		
+		
 		
 	}
 </script>
