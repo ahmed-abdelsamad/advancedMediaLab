@@ -26,7 +26,8 @@
 </html>
 <script>
 	window.onload = function(){
-		$('#content').html(items[0].print(100,100,100,200));
+		setTimeout(function () { $('#content').html(items[0].print(100,100,100,200));},100);
+		
 	}
 </script>
 <!-- Script loading -->
