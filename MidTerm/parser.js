@@ -6,111 +6,7 @@
  * Your code will be tested using manipulated JSON objects!
  */
 
-
-
-/*
- *  Meta Class
- */
- 
-function Meta(name,category,location,image){
-	if(name != null)
-	this.name = name;
-	
-	if(category != null)
-	this.category = category;
-	
-	if(location != null){
-		this.lat = location['lat'];
-		this.lon = location['lon'];	
-	}
-	
-	if(image != null)
-	this.image = image;
-}
-
-
-/*
- * Opinion Class
- */
- 
-function opinion(author,image,rating,opinion){
-	this.author  = author;
-	this.image   = image;
-	this.rating  = rating;
-	this.opinion = opinion;
-}
-/*
- * Generic Class for Item
- */ 
-function Item(){
-	this.setTrustPercent = function(val){
-		if(val != null)
-		this.trust = val;
-	}
-	
-	this.setReviewScore = function(val){
-		if(val != null)
-		this.reviewScore = val;
-	}
-	
-	this.setMeta = function(val){
-		if(val != null)
-		this.meta = new Meta(val['name'],val['category'],val['location'],val['image']);
-	}
-		
-	this.setOpinions = function (val,count){
-		/* Set Opinions*/
-	}
-	
-	this.setOpinion = function(val){
-		if(val != null){
-			this.opinionCount = val['count']; 
-			if(val['list'] != null)
-				this.setOpinions(val['list'],this.opinionCount);
-		}
-	} 
-	
-	this.opinions = Array();
-}
-
-
-/*
- *  Restaurant
- */
- 
-Restaurant.prototype = new Item();        // Set prototype to Person's
-Restaurant.prototype.constructor = Restaurant;   // Set constructor back to Robot
-Software.prototype = new Item();        // Set prototype to Person's
-Software.prototype.constructor = Software;   // Set constructor back to Robot
-Car.prototype = new Item();        // Set prototype to Person's
-Car.prototype.constructor = Car;   // Set constructor back to Robot
-function Restaurant(){
-	
-	this.type = 'restaurant';
-	
-}
-
-function Software(){
-	this.type = 'software';
-}
-
-function Car(){
-	this.type = 'car';
-}
-/*
- *  Item Factory
- *
- */
- 
-function createItem(type){
-	 switch(type){
-		 case 'restaurant':return new Restaurant();break;
-		 case 'software':return new Software();break;
-		 case 'car':return new Car();break;
-	 }
-}
-
-var JString = [{
+JString = [{
 					"item-type":"restaurant",
 					 "trust-percent":"30",
 					 "review-score":"80",
@@ -170,22 +66,152 @@ var JString = [{
 
 				{"item-type": "car", "meta": {"name":"Ferrari"}}
 			];
+
+
+
+/*
+ * Opinion Class
+ */
+ 
+function opinion(author,image,rating,opinion){
+	if(author != null)
+	this.author  = author;
+	
+	if(image != null)
+	this.image   = image;
+	
+	if(rating != null)
+	this.rating  = rating;
+	
+	if(opinion != null)
+	this.opinion = opinion;
+}
+/*
+ * Generic Class for Item
+ */ 
+function Item(){
+	
+	this.type = '';
+	this.opinions = Array();
+	
+	this.setTrustPercent = function(val){
+		if(val != null)
+		this.trust = val;
+	}
+	
+	this.setReviewScore = function(val){
+		if(val != null)
+		this.reviewScore = val;
+	}
+	
+	this.Meta = function (name,category,location,image){
+		if(name != null)
+		this.name = name;
+		
+		if(category != null)
+		this.category = category;
+		
+		if(location != null){
+			this.lat = location['lat'];
+			this.lon = location['lon'];	
+		}
+	
+		if(image != null)
+		this.image = image;
+		
+	}
+	
+	this.setMeta = function(val){
+		if(val != null)
+		this.Meta(val['name'],val['category'],val['location'],val['image']);
+	}
+		
+	this.setOpinions = function (val,count){
+		/* Set Opinions*/
+		for(var i = 0 ; i < val.length ; i++)
+		this.opinions.push(new opinion(val[i]['author'],val[i]['image'],val[i]['rating'],val[i]['opinion']));
+	}
+	
+	this.setOpinion = function(val){
+		if(val != null){
+			this.opinionCount = val['count']; 
+			if(val['list'] != null)
+				this.setOpinions(val['list'],this.opinionCount);
+		}
+	} 
+	
+	this.print = function(){
+		
+		
+		header = $('<h2>').html(this.name);
+		img = $('<img>').attr('src',this.image);
+		div = $('<div>').append(header).append(img);
+		
+		/*div = document.createElement("div");
+		content = document.createElement("h1");
+		content.innerHTML  = this.type;
+		console.log(content.innerHTML );
+		div.appendChild(content);*/
+		return div;
+	}
+}
+
+
+/*
+ *  Restaurant
+ */
+ 
+Restaurant.prototype = new Item();        // Set prototype to Person's
+Restaurant.prototype.constructor = Restaurant;   // Set constructor back to Robot
+Software.prototype = new Item();        // Set prototype to Person's
+Software.prototype.constructor = Software;   // Set constructor back to Robot
+Car.prototype = new Item();        // Set prototype to Person's
+Car.prototype.constructor = Car;   // Set constructor back to Robot
+function Restaurant(){
+	
+	this.type = 'restaurant';
+	
+}
+
+function Software(){
+	this.type = 'software';
+}
+
+function Car(){
+	this.type = 'car';
+}
+/*
+ *  Item Factory
+ *
+ */
+ 
+function createItem(type){
+	 switch(type){
+		 case 'restaurant':return new Restaurant();break;
+		 case 'software':return new Software();break;
+		 case 'car':return new Car();break;
+	 }
+}
+
 			
 
 var items = Array();
-for(var i = 0;i < JString.length;i++){
-	var x = JString[i]['item-type'];
-	var tempItem = createItem(x);
+for(i = 0;i < JString.length;i++){
+	x = JString[i]['item-type'];
+	tempItem = createItem(x);
 	
 	tempItem.setTrustPercent(JString[i]['trust-percent']);
 	tempItem.setReviewScore(JString[i]['review-score']);
 	tempItem.setMeta(JString[i]['meta']);
 	tempItem.setOpinion(JString[i]['opinions']);
-	//tempItem.handleMeta(JString[i]['opinions']);
 			
 	items.push(tempItem);
 		
 }
 
+delete i;
+delete x;
+delete tempItem;
+delete JString;
 
 

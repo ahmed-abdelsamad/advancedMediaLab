@@ -3,12 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Trust Me!</title>
-<link rel="stylesheet" media="screen and (min-width:300px)" href="style300.css" />
-<link rel="stylesheet" media="screen and (min-width:1000px)" href="style1000.css" />
+<link rel="stylesheet" media="all" href="reset.css" />
+<link rel="stylesheet" media="screen and (min-width:300px) and (max-width:999px)" href="style300.css" />
+<link rel="stylesheet" media="screen and (min-width:1000px) and (max-width:1499px)" href="style1000.css" />
 <link rel="stylesheet" media="screen and (min-width:1500px)" href="style1500.css" />
-<script src="jquery.js"></script>
-<script src="parser.js"></script>
+<link rel="stylesheet" media="screen" href="home.css" />
 </head>
 <body onresize="console.log($(window).width());">
+<div id="header">
+<!-- Place Header Data -->
+</div>
+<div id="content">
+    hello
+</div>
+<div id="footer">
+<!-- Place footer Data -->
+</div>
 </body>
 </html>
+<script>
+	window.onload = function(){
+		$('#content').html(items[0].print(100,100,100,200));
+	}
+</script>
+<!-- Script loading -->
+<script src="jquery.js"></script>
+<script src="parser.js"></script>
