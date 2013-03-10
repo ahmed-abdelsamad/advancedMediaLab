@@ -1,0 +1,26 @@
+/* CSS Document */
+body{
+ height:1000px;
+}
+
+#header{
+	width:100%;
+	height:10%;
+	min-height:30px;
+	background-color:gray;
+}
+
+#content{
+	position:relative;
+	margin: 0 auto;
+	height:80%;
+	width:50%;
+	background-color:blue;
+}
+
+#footer{
+	width:100%;
+	height:10%;
+	min-height:30px;
+	background-color:black;
+}
