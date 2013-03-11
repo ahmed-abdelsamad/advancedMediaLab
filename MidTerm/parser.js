@@ -387,6 +387,13 @@ function Item(){
 		if(this.trust > 90){
 			div.append($('<div>').addClass('star').html(i));
 		}
+		
+		if(this.lat != null && this.lon != null){
+			div.attr('lat',this.lat).attr('lon',this.lon);
+			div.append($('<div>').addClass('map').attr('onClick','fetchMap(this)'));
+		}
+		
+		
 		/*div = document.createElement("div");
 		content = document.createElement("h1");
 		content.innerHTML  = this.type;

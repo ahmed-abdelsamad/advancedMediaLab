@@ -41,6 +41,7 @@ body{
 	border-radius:10px;
 	position:absolute;
 	text-align:center;
+	overflow:hidden;
 }
 .img{
 	/*width:480px;*/
@@ -50,4 +51,20 @@ body{
 	background-color:green;
 	border:2px hidden;
 	border-radius:10px 10px 0px 0px;
+}
+
+.map{
+	background-image: url("map.jpg");
+    background-size: 32px 32px;
+    height: 32px;
+    opacity: 0.5;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 32px;
+}
+
+.map:hover{
+	opacity:1;
+	cursor:pointer;
 }
