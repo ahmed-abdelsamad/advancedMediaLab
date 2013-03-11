@@ -29,7 +29,9 @@
 	animateValue = 3000; // 1000
 	function structureElements(animate){
 		totalWidth = $(window).width();
-		width = Math.round((totalWidth*0.8)/5);
+		width = (totalWidth*0.8)/5;
+		baseLeft = totalWidth * 0.8 *0.35;
+		baseTop = $('#content').height() * 0.8 * 0.3;
 		width -= 10;
 		delete itemPos;
 		delete row;
@@ -57,10 +59,11 @@
 			
 			if(animate){
 				tempItem.css({
-				   left : '35%',
-				   top :  '30%',
-				   width: currentWidth+'px',
-				   opacity:'0',
+				  left : baseLeft+'px',
+				  top  : baseTop+'px',
+				  width: currentWidth+'px',
+				  position: 'absolute',
+				  opacity:'1',
 				})
 				$('#content').append(tempItem);
 				tempItem.animate({left:currentLeft+'px',top:currentTop+'px',opacity:1},animateValue);
@@ -177,25 +180,25 @@
 				}
 				
 				if(animate){
+					$('#content').append(tempItem);					
 					tempItem.css({
-					   left : '35%',
-					   top :  '30%',
+					   left : baseLeft+'px',
+					   top :  baseTop + 'px',
 					   width: currentWidth+'px',
 					   opacity:'0',
-					})
-					$('#content').append(tempItem);
+					});
 					(function (tempT,leftT,topT,widthT){
 						window.setTimeout(function (){
 							doSomeBlaBla(tempT,leftT,topT,widthT)
 						},i * 500);
 					})(tempItem,currentLeft,currentTop,currentWidth);
 				}else{
+					$('#content').append(tempItem);
 					tempItem.css({
 					   left : currentLeft+'px',
 					   top  : currentTop+'px',
 					   width: currentWidth+'px'
 					});
-					$('#content').append(tempItem);
 				}
 				
 				
