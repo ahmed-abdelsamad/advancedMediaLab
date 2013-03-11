@@ -393,7 +393,9 @@ function Item(){
 			div.append($('<div>').addClass('map').attr('onClick','fetchMap(this)'));
 		}
 		
-		
+		if(this.reviewScore != null){
+			div.append($('<h3>').html(this.reviewScore));
+		}
 		/*div = document.createElement("div");
 		content = document.createElement("h1");
 		content.innerHTML  = this.type;

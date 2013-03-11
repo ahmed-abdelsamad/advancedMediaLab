@@ -54,10 +54,10 @@ body{
 }
 
 .map{
-	background-image: url("map.jpg");
+	background-image: url("map.png");
     background-size: 32px 32px;
     height: 32px;
-    opacity: 0.5;
+    opacity: 0.7;
     position: absolute;
     right: 5px;
     top: 5px;
