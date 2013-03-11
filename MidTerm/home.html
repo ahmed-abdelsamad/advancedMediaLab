@@ -9,7 +9,7 @@
 <link rel="stylesheet" media="screen and (min-width:1500px)" href="style1500.css" />
 <link rel="stylesheet" media="screen" href="home.css" />
 </head>
-<body onresize="console.log($(window).width());">
+<body onresize="structureElements()">
 <div id="header">
 <!-- Place Header Data -->
 </div>
@@ -25,54 +25,147 @@
 </body>
 </html>
 <script>
-	window.onload = function(){
+	
+	function structureElements(){
 		totalWidth = $(window).width();
-		width = (totalWidth*0.8)/3;
+		width = (totalWidth*0.8)/5;
 		width -= 10;
-		setTimeout(function () {
+		delete itemPos;
+		delete row;
+		delete col;
+		row = 0;
+		col = 0;
+		itemPos = Array();
 			currentLeft = 0;
+			currentTop = 10
 			//width = 500;
-			tempItem = items[0].print();
+			tempItem = items[0].print(0);
 			img = tempItem.find('img');
 			imgVal = new Image();
 			imgVal.src = img.attr('src');	
 			currentWidth = width;
-			if(imgVal.width > (width-10)){
-				imgVal.width(width-10);
+			imgWidth = imgVal.width;
+			imgHeight = imgVal.height;
+			if(imgWidth > (width-10)){
+				img.width(width-10);
 			}else{
-				currentWidth = imgVal.width;
+				currentWidth = imgWidth;
 			}
 			tempItem.css({
 			   left : currentLeft+'px',
-			   top : '10px',
+			   top :  currentTop +'px',
 			   width: currentWidth+'px'
 			});
-			currentLeft += currentWidth+10;
 			$('#content').html(tempItem);
+			itemPos.push(Array());
+			itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
+			currentLeft += currentWidth+10;
+			
 			for(i = 1;i<items.length;i++){
-				tempItem = items[i].print();
+				tempItem = items[i].print(i);
 				img = tempItem.find('img');
 				imgVal = new Image();
 				imgVal.src = img.attr('src');	
 				currentWidth = width;
-				if(imgVal.width > (width-10)){
-					imgVal.width(width-10);
+				imgWidth = imgVal.width;
+				imgHeight = imgVal.height;
+				if(imgWidth > (width-10)){
+					img.width(width-10);
 				}else{
-					currentWidth = imgVal.width;
+					currentWidth = imgWidth;
+				}
+
+				
+				if( (currentLeft + currentWidth) > (totalWidth * 0.8) ){
+					row++;
+					itemPos.push(Array());
+					col = 0;
+					currentLeft = 0;
+				}else{
+					if(itemPos[row].length >= 5){
+						row++;
+						itemPos.push(Array());
+						col = 0;
+						currentLeft = 0;
+					}
+				}
+				
+				if(row > 0 ){
+					tempCol = col;
+					check = true;
+					while(check){
+						currentItem = itemPos[row-1][tempCol];
+						if(currentItem == null){
+							tempCol--;
+							continue;
+						}
+						upTop = currentItem.top;
+						upHeight = currentItem.height;
+						upLeft = currentItem.left;
+						upWidth = currentItem.width;
+						maxTop = upTop+upHeight+10;
+						if(currentLeft >= upLeft){
+							if((currentLeft+currentWidth) <= (upLeft + upWidth)){
+								currentTop = upTop + upHeight + 10
+								check = false;
+								/* Lies within the item above it*/
+							}else{
+								console.log(tempCol+1 + 'RowMax '+ itemPos[row-1].length);
+								tempCheck = true;
+								for(j=tempCol+1;j<itemPos[row-1].length;j++){
+									currentItem = itemPos[row-1][j];
+									if(currentItem == null){
+										console.log("115- " + i);
+										currentTop = maxTop;
+										check = false;
+										break;
+									}
+									upTop = currentItem.top;
+									upHeight = currentItem.height;
+									upLeft = currentItem.left;
+									upWidth = currentItem.width;
+									tmpWidth = currentLeft + currentWidth;
+									newWidth = upLeft + upWidth;
+									console.log(tmpWidth + ' - ' + newWidth);
+									if((currentLeft+currentWidth) <= (upLeft + upWidth)){
+
+										currentTop = Math.max(maxTop,upTop + upHeight + 10);
+										check = false;
+										tempCheck = false;
+										break;
+										/* Lies within the item above it*/
+									}
+								}
+								if(tempCheck){
+									currentTop = maxTop;
+									check = false;
+								}
+								
+							}
+						}else{
+							tempCol--;
+							/* Repeat with previous Col*/
+						}
+					}
+					
 				}
 				tempItem.css({
 				   left : currentLeft+'px',
-				   top : '10px',
+				   top  : currentTop+'px',
 				   width: currentWidth+'px'
 				});
-				currentLeft += currentWidth + 10;
 				$('#content').append(tempItem);
+				itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
+				currentLeft += currentWidth + 10;
+				
 			}
-			},50);
-		
-		
-		
+			
 	}
+	window.onload = function(){
+			setTimeout(function (){
+				structureElements()
+			},50);
+	};
 </script>
 <!-- Script loading -->
 <script src="jquery.js"></script>

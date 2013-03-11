@@ -37,8 +37,209 @@ JString = [{
 							}
 						]
 					}
+				},{
+					"item-type":"restaurant",
+					 "trust-percent":"91",
+					 "review-score":"80",
+					 "meta": {
+						"name": "Pizza hut",
+						"category": "food",
+						"location": {
+							"lat": "30.046250",
+							"lon": "31.224411"
+						},
+						"image":"Pizzahut.jpg"
+					},
+					"opinions": {
+						"count":"15",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image":"Wallas.jpg",
+							 	"rating": "0",
+							 	"opinion": "Tastes like crap"
+							}, 
+							{
+								"author": "Spammer",
+								"rating": "100",
+								"opinion": "This is a really really really really really really really really really really really really really really really really really really really really really really really really reallyreally really long really really really really really really comment"
+							}
+						]
+					}
+				},{
+					"item-type":"restaurant",
+					 "trust-percent":"91",
+					 "review-score":"80",
+					 "meta": {
+						"name": "Pizza hut",
+						"category": "food",
+						"location": {
+							"lat": "30.046250",
+							"lon": "31.224411"
+						},
+						"image":"Pizzahut.jpg"
+					},
+					"opinions": {
+						"count":"15",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image":"Wallas.jpg",
+							 	"rating": "0",
+							 	"opinion": "Tastes like crap"
+							}, 
+							{
+								"author": "Spammer",
+								"rating": "100",
+								"opinion": "This is a really really really really really really really really really really really really really really really really really really really really really really really really reallyreally really long really really really really really really comment"
+							}
+						]
+					}
+				},{
+					"item-type":"software",
+					"trust-percent":"100",
+					"review-score":"100",
+					"meta": {
+						"name": "Linux",
+						"category": "Technology",
+						"image":"Penguin.jpg"
+					},
+					"opinions": {
+						"count":"9000",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image": "Wallas.jpg",
+								"rating": "100",
+								"opinion": "Geeky love is geeky love <3"
+							}, 
+							{
+								"author": "Windows lover",
+								"rating": "1",
+								"opinion": "Windows FTW! Linux is so hard to learn."
+							}
+						]
+					}
+				},{
+					"item-type":"restaurant",
+					 "trust-percent":"91",
+					 "review-score":"80",
+					 "meta": {
+						"name": "Pizza hut",
+						"category": "food",
+						"location": {
+							"lat": "30.046250",
+							"lon": "31.224411"
+						},
+						"image":"Pizzahut.jpg"
+					},
+					"opinions": {
+						"count":"15",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image":"Wallas.jpg",
+							 	"rating": "0",
+							 	"opinion": "Tastes like crap"
+							}, 
+							{
+								"author": "Spammer",
+								"rating": "100",
+								"opinion": "This is a really really really really really really really really really really really really really really really really really really really really really really really really reallyreally really long really really really really really really comment"
+							}
+						]
+					}
+				},{
+					"item-type":"restaurant",
+					 "trust-percent":"91",
+					 "review-score":"80",
+					 "meta": {
+						"name": "Pizza hut",
+						"category": "food",
+						"location": {
+							"lat": "30.046250",
+							"lon": "31.224411"
+						},
+						"image":"Pizzahut.jpg"
+					},
+					"opinions": {
+						"count":"15",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image":"Wallas.jpg",
+							 	"rating": "0",
+							 	"opinion": "Tastes like crap"
+							}, 
+							{
+								"author": "Spammer",
+								"rating": "100",
+								"opinion": "This is a really really really really really really really really really really really really really really really really really really really really really really really really reallyreally really long really really really really really really comment"
+							}
+						]
+					}
+				},{
+					"item-type":"restaurant",
+					 "trust-percent":"91",
+					 "review-score":"80",
+					 "meta": {
+						"name": "Pizza hut",
+						"category": "food",
+						"location": {
+							"lat": "30.046250",
+							"lon": "31.224411"
+						},
+						"image":"Pizzahut.jpg"
+					},
+					"opinions": {
+						"count":"15",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image":"Wallas.jpg",
+							 	"rating": "0",
+							 	"opinion": "Tastes like crap"
+							}, 
+							{
+								"author": "Spammer",
+								"rating": "100",
+								"opinion": "This is a really really really really really really really really really really really really really really really really really really really really really really really really reallyreally really long really really really really really really comment"
+							}
+						]
+					}
+				},
+				{
+					"item-type":"restaurant",
+					 "trust-percent":"91",
+					 "review-score":"80",
+					 "meta": {
+						"name": "Pizza hut",
+						"category": "food",
+						"location": {
+							"lat": "30.046250",
+							"lon": "31.224411"
+						},
+						"image":"Pizzahut.jpg"
+					},
+					"opinions": {
+						"count":"15",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image":"Wallas.jpg",
+							 	"rating": "0",
+							 	"opinion": "Tastes like crap"
+							}, 
+							{
+								"author": "Spammer",
+								"rating": "100",
+								"opinion": "This is a really really really really really really really really really really really really really really really really really really really really really really really really reallyreally really long really really really really really really comment"
+							}
+						]
+					}
 				},
 
+				
 				{
 					"item-type":"software",
 					"trust-percent":"100",
@@ -65,8 +266,34 @@ JString = [{
 						]
 					}
 				},
-
 				{"item-type": "car", "meta": {"name":"Ferrari"}}
+				,
+				{
+					"item-type":"software",
+					"trust-percent":"100",
+					"review-score":"100",
+					"meta": {
+						"name": "Linux",
+						"category": "Technology",
+						"image":"Penguin.jpg"
+					},
+					"opinions": {
+						"count":"9000",
+						"list": [
+							{
+								"author": "TjWallas",
+								"image": "Wallas.jpg",
+								"rating": "100",
+								"opinion": "Geeky love is geeky love <3"
+							}, 
+							{
+								"author": "Windows lover",
+								"rating": "1",
+								"opinion": "Windows FTW! Linux is so hard to learn."
+							}
+						]
+					}
+				}
 			];
 
 
@@ -112,9 +339,13 @@ function Item(){
 	this.Meta = function (name,category,location,image){
 		if(name != null)
 		this.name = name;
+		else
+		this.name = '';
 		
 		if(category != null)
 		this.category = category;
+		else
+		this.category = '';
 		
 		if(location != null){
 			this.lat = location['lat'];
@@ -147,14 +378,14 @@ function Item(){
 		}
 	} 
 	
-	this.print = function(){
+	this.print = function(i){
 		
 		
 		header = $('<h2>').html(this.name);
 		img = $('<img>').attr('src',this.image).addClass('img');
 		div = $('<div>').addClass('item').attr('itemId',this.id).append(img).append(header);
 		if(this.trust > 90){
-			div.append($('<div>').addClass('star'));
+			div.append($('<div>').addClass('star').html(i));
 		}
 		/*div = document.createElement("div");
 		content = document.createElement("h1");
