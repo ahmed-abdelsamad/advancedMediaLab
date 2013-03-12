@@ -494,7 +494,7 @@ function moveMe(div){
 	currentDiv.css({'z-index':4}).animate({left:baseLeft+'px',top:baseTop+'px',position:'fixed'},300,
 	function (){
 		(function (temp){	
-		temp.find('.opinion').show();
+		temp.find('.opinion').slideDown(300);
 			})(currentDiv)
 		});
 }
