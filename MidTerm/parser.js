@@ -390,12 +390,24 @@ function Item(){
 		
 		if(this.lat != null && this.lon != null){
 			div.attr('lat',this.lat).attr('lon',this.lon);
-			div.append($('<div>').addClass('map').attr('onClick','fetchMap(this)'));
+			div.append($('<div>').addClass('map').click(function (e){
+				e.stopPropagation();
+				fetchMap(this);
+			})); //attr('onClick','fetchMap(this)')
 		}
 		
 		if(this.reviewScore != null){
 			div.append($('<h3>').html(this.reviewScore));
 		}
+		
+		if(this.opinions.length > 0){
+			div.append($('<h3>').html('opinions').css('display','none').addClass('opinion'));
+		}
+		div.click(function (e){
+			moveMe(this);
+			e.stopPropagation();
+		});
+		//div.bind('click',"console.log('a');",false);
 		/*div = document.createElement("div");
 		content = document.createElement("h1");
 		content.innerHTML  = this.type;
@@ -459,6 +471,33 @@ for(i = 0;i < JString.length;i++){
 		
 }
 
+var currentDiv;
+var prevLeft;
+var prevTop;
+function moveMe(div){
+	
+	if(currentDiv != null){
+		//console.log('hello');
+		// Mov Current Div back;
+		
+		currentDiv.animate({left : prevLeft,top  : prevTop,position:'absolute','z-index':0,'position':'absolute'},300).find('.opinion').hide();
+		if($(div).attr('itemid') == currentDiv.attr('itemid')){
+			console.log('hello');
+			return;	
+		}
+	}
+	currentDiv = $(div);
+	prevLeft = currentDiv.css('left');
+	prevTop = currentDiv.css('top');
+	currentDiv.find('.opinion').hide();
+	
+	currentDiv.css({'z-index':4}).animate({left:baseLeft+'px',top:baseTop+'px',position:'fixed'},300,
+	function (){
+		(function (temp){	
+		temp.find('.opinion').show();
+			})(currentDiv)
+		});
+}
 delete i;
 delete x;
 delete tempItem;

@@ -217,6 +217,9 @@
 		temp.animate({opacity:1, left : leftT+'px',top  : topT+'px',width: widthT+'px'},animateValue);
 	}
 	window.onload = function(){
+			totalWidth = $(window).width();
+			baseLeft = totalWidth * 0.8 *0.35;
+			baseTop = $('#content').height() * 0.8 * 0.3;
 			setTimeout(function (){
 				structureElements(true)
 			},50);

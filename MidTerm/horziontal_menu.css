@@ -1,0 +1,39 @@
+/* CSS Document */
+
+#nav, #nav ul
+{
+    background-color:#fff;
+    color:#000;
+    margin:0;
+    padding:0;
+    list-style:none;
+	width:auto;
+	height:auto;
+}
+
+#nav li{
+	float:left;
+}
+
+#nav li ul
+{
+    display:none;
+}
+
+
+#nav li:hover ul, #nav li:focus ul
+{
+    display:block;
+}
+
+#nav li:hover ul, #nav li:focus ul
+{
+    position:absolute;
+    display:block;
+}
+
+#nav li ul li
+{
+    float:none;
+	border-top:1px solid #fff;
+}

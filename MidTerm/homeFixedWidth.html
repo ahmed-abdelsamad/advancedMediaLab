@@ -148,6 +148,9 @@
 			
 	}
 	window.onload = function(){
+			totalWidth = $(window).width();
+			baseLeft = totalWidth * 0.8 *0.35;
+			baseTop = $('#content').height() * 0.8 * 0.3;
 			setTimeout(function (){
 				structureElements()
 			},50);

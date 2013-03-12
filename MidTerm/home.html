@@ -7,20 +7,37 @@
 <link rel="stylesheet" media="screen and (min-width:300px) and (max-width:999px)" href="style300.css" />
 <link rel="stylesheet" media="screen and (min-width:1000px) and (max-width:1499px)" href="style1000.css" />
 <link rel="stylesheet" media="screen and (min-width:1500px)" href="style1500.css" />
+<link rel="stylesheet" type="text/css" href="default.css" media="screen">
+<link rel='stylesheet' media='screen' href="horziontal_menu.css" />
 <link rel="stylesheet" media="screen" href="home.css" />
 </head>
 <body onresize="structureElements()">
-<div id="header">
-<!-- Place Header Data -->
+<div id="header"> 
+  <!-- Place Header Data -->
+  <div id='navigation'>	
+  	<ul id="nav">
+        <li><a href="index.html" title="return to front page" >Communication (Respond)</a></li>
+        <li class='second-level'><a href="about.html" title="learn more about us">Mini Dialogue (Job-People-Places)</a>
+          <ul>
+            <li><a href="corporate.html" title="Read our corporate profile">Class 1</a></li>
+            <li><a href="employees.html" title="Read more about the people that work here.">Class 2</a></li>
+            <li><a href="divisions.html" title="Read more about our various divisions">Class 3</a></li>
+          </ul>
+        </li>
+        <li><a href="portfolio.html" title="see some samples of our work">Multiple Choice</a></li>
+        <li><a href="contact.html" title="contact us">Correct the Mistake</a></li>
+        <li><a href="contact.html" title="contact us">Translation</a></li>
+        <li><a href="contact.html" title="contact us">Paragraphh Writing</a></li>
+      </ul>
+  </div>
 </div>
 <div id="content">
-    <div class='item'>
-    	<img class='img' width='480' height="360" src="../Lab2/obama.jpg"/>
-        <div class='star'></div>
-    </div>
+  <div class='item'> <img class='img' width='480' height="360" src="../Lab2/obama.jpg"/>
+    <div class='star'></div>
+  </div>
 </div>
-<div id="footer">
-<!-- Place footer Data -->
+<div id="footer"> 
+  <!-- Place footer Data --> 
 </div>
 </body>
 </html>
@@ -162,6 +179,9 @@
 			
 	}
 	window.onload = function(){
+			totalWidth = $(window).width();
+			baseLeft = totalWidth * 0.8 *0.35;
+			baseTop = $('#content').height() * 0.8 * 0.3;
 			setTimeout(function (){
 				structureElements()
 			},50);
