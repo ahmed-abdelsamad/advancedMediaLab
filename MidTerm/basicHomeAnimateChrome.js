@@ -1,36 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Trust Me!</title>
-<link rel="stylesheet" media="all" href="reset.css" />
-<link rel="stylesheet" media="screen and (min-width:300px) and (max-width:999px)" href="style300.css" />
-<link rel="stylesheet" media="screen and (min-width:1000px) and (max-width:1499px)" href="style1000.css" />
-<link rel="stylesheet" media="screen and (min-width:1500px)" href="style1500.css" />
-<link rel="stylesheet" media="screen" href="home.css" />
-</head>
-<body onresize="structureElements()">
-<div id="header">
-<!-- Place Header Data -->
-</div>
-<div id="content">
-    <div class='item'>
-    	<img class='img' width='480' height="360" src="../Lab2/obama.jpg"/>
-        <div class='star'></div>
-    </div>
-</div>
-<div id="footerT">
-<!-- Place footer Data -->
-</div>
-</body>
-</html>
-<script>
-	
-	function structureElements(){
+
+	animateValue = 3000; // 1000
+	function structureElements(animate){
 		totalWidth = $(window).width();
-		noOfitems = (totalWidth*0.8)/(226*0.8)
-		//width = (totalWidth*0.8)/3;
-		width = 226*0.8;
+		width = (totalWidth*0.8)/5;
+		baseLeft = totalWidth * 0.8 *0.35;
+		baseTop = $('#content').height() * 0.8 * 0.3;
 		width -= 10;
 		delete itemPos;
 		delete row;
@@ -43,15 +17,48 @@
 			//width = 500;
 			tempItem = items[0].print(0);
 			img = tempItem.find('img');
+			imgVal = new Image();
+			imgVal.src = img.attr('src');	
 			currentWidth = width;
-			img.width(width);
+			imgWidth = imgVal.width;
+			imgHeight = imgVal.height;
+			if(imgWidth > (width-10)){
+				img.width(width-10);
+			}else{
+				currentWidth = imgWidth;
+			}
 			
-			tempItem.css({
+			$('#content').html('');
+			
+			if(animate){
+				tempItem.css({
+				  left : baseLeft+'px',
+				  top  : baseTop+'px',
+				  width: currentWidth+'px',
+				  position: 'absolute',
+				  opacity:'1',
+				})
+				$('#content').append(tempItem);
+				tempItem.animate({left:currentLeft+'px',top:currentTop+'px',opacity:1},animateValue);
+			}else{
+				tempItem.css({
+			   		left : currentLeft+'px',
+			   		top :  currentTop +'px',
+			   		width: currentWidth+'px'
+				});
+				$('#content').append(tempItem);
+			}
+			/*tempItem.animate({opacity:1},500).css({
 			   left : currentLeft+'px',
 			   top :  currentTop +'px',
 			   width: currentWidth+'px'
 			});
-			$('#content').html(tempItem);
+			tempItem.css({
+			   left : currentLeft+'px',
+			   top :  currentTop +'px',
+			   width: currentWidth+'px'
+			});*/
+			
 			itemPos.push(Array());
 			itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
 			currentLeft += currentWidth+10;
@@ -59,8 +66,17 @@
 			for(i = 1;i<items.length;i++){
 				tempItem = items[i].print(i);
 				img = tempItem.find('img');
+				imgVal = new Image();
+				imgVal.src = img.attr('src');	
 				currentWidth = width;
-				img.width(width);
+				imgWidth = imgVal.width;
+				imgHeight = imgVal.height;
+				if(imgWidth > (width-10)){
+					img.width(width-10);
+				}else{
+					currentWidth = imgWidth;
+				}
+
 				
 				if( (currentLeft + currentWidth) > (totalWidth * 0.8) ){
 					row++;
@@ -68,7 +84,7 @@
 					col = 0;
 					currentLeft = 0;
 				}else{
-					if(itemPos[row].length >= noOfitems){
+					if(itemPos[row].length >= 5){
 						row++;
 						itemPos.push(Array());
 						col = 0;
@@ -135,27 +151,49 @@
 					}
 					
 				}
-				tempItem.css({
-				   left : currentLeft+'px',
-				   top  : currentTop+'px',
-				   width: currentWidth+'px'
-				});	
-				$('#content').append(tempItem);
+				
+				if(animate){
+					$('#content').append(tempItem);					
+					tempItem.css({
+					   left : baseLeft+'px',
+					   top :  baseTop + 'px',
+					   width: currentWidth+'px',
+					   opacity:'0',
+					});
+					(function (tempT,leftT,topT,widthT){
+						window.setTimeout(function (){
+							doSomeBlaBla(tempT,leftT,topT,widthT)
+						},i * 500);
+					})(tempItem,currentLeft,currentTop,currentWidth);
+				}else{
+					$('#content').append(tempItem);
+					tempItem.css({
+					   left : currentLeft+'px',
+					   top  : currentTop+'px',
+					   width: currentWidth+'px'
+					});
+				}
+				
+				
+				//tempItem.animate({opacity:1, left : currentLeft+'px',top  : currentTop+'px',width: currentWidth+'px'},3000);
 				itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
 				currentLeft += currentWidth + 10;
 				
 			}
 			
+			delete itemPos;
+			delete tempItem;
+			delete imgVal;
+			
+	}
+	function doSomeBlaBla(temp,leftT,topT,widthT){
+		temp.animate({opacity:1, left : leftT+'px',top  : topT+'px',width: widthT+'px'},animateValue);
 	}
 	window.onload = function(){
 			totalWidth = $(window).width();
 			baseLeft = totalWidth * 0.8 *0.35;
 			baseTop = $('#content').height() * 0.8 * 0.3;
 			setTimeout(function (){
-				structureElements()
+				structureElements(true)
 			},50);
 	};
-</script>
-<!-- Script loading -->
-<script src="jquery.js"></script>
-<script src="parser.js"></script>

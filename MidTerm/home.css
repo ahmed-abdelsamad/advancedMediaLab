@@ -58,6 +58,7 @@ body{
 	text-align:center;
 	overflow:hidden;
 	background-color:white;
+	cursor:pointer;
 }
 .img{
 	/*width:480px;*/

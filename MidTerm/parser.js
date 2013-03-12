@@ -504,3 +504,8 @@ delete tempItem;
 delete JString;
 
 
+console.log('blabla');
+for(a = 0 ; a < items.length;a++){
+	tempItem = items[a].print(a);
+	$('#bucket').append(tempItem);
+}

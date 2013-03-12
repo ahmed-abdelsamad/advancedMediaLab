@@ -1,37 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Trust Me!</title>
-<link rel="stylesheet" media="all" href="reset.css" />
-<link rel="stylesheet" media="screen and (min-width:300px) and (max-width:999px)" href="style300.css" />
-<link rel="stylesheet" media="screen and (min-width:1000px) and (max-width:1499px)" href="style1000.css" />
-<link rel="stylesheet" media="screen and (min-width:1500px)" href="style1500.css" />
-<link rel="stylesheet" media="screen" href="home.css" />
-</head>
-<body onresize="structureElements(false)">
-<div id="header">
-<!-- Place Header Data -->
-</div>
-<div id="content">
-    <div class='item'>
-    	<img class='img' width='480' height="360" src="../Lab2/obama.jpg"/>
-        <div class='star'></div>
-    </div>
-</div>
-<div id="footer">
-<!-- Place footer Data -->
-</div>
-</body>
-</html>
-<script>
-	
-	animateValue = 3000; // 1000
-	function structureElements(animate){
+function structureElements(){
 		totalWidth = $(window).width();
 		width = (totalWidth*0.8)/5;
-		baseLeft = totalWidth * 0.8 *0.35;
-		baseTop = $('#content').height() * 0.8 * 0.3;
 		width -= 10;
 		delete itemPos;
 		delete row;
@@ -54,38 +23,12 @@
 			}else{
 				currentWidth = imgWidth;
 			}
-			
-			$('#content').html('');
-			
-			if(animate){
-				tempItem.css({
-				  left : baseLeft+'px',
-				  top  : baseTop+'px',
-				  width: currentWidth+'px',
-				  position: 'absolute',
-				  opacity:'1',
-				})
-				$('#content').append(tempItem);
-				tempItem.animate({left:currentLeft+'px',top:currentTop+'px',opacity:1},animateValue);
-			}else{
-				tempItem.css({
-			   		left : currentLeft+'px',
-			   		top :  currentTop +'px',
-			   		width: currentWidth+'px'
-				});
-				$('#content').append(tempItem);
-			}
-			/*tempItem.animate({opacity:1},500).css({
-			   left : currentLeft+'px',
-			   top :  currentTop +'px',
-			   width: currentWidth+'px'
-			});
 			tempItem.css({
 			   left : currentLeft+'px',
 			   top :  currentTop +'px',
 			   width: currentWidth+'px'
-			});*/
-			
+			});
+			$('#content').html(tempItem);
 			itemPos.push(Array());
 			itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
 			currentLeft += currentWidth+10;
@@ -178,53 +121,23 @@
 					}
 					
 				}
-				
-				if(animate){
-					$('#content').append(tempItem);					
-					tempItem.css({
-					   left : baseLeft+'px',
-					   top :  baseTop + 'px',
-					   width: currentWidth+'px',
-					   opacity:'0',
-					});
-					(function (tempT,leftT,topT,widthT){
-						window.setTimeout(function (){
-							doSomeBlaBla(tempT,leftT,topT,widthT)
-						},i * 500);
-					})(tempItem,currentLeft,currentTop,currentWidth);
-				}else{
-					$('#content').append(tempItem);
-					tempItem.css({
-					   left : currentLeft+'px',
-					   top  : currentTop+'px',
-					   width: currentWidth+'px'
-					});
-				}
-				
-				
-				//tempItem.animate({opacity:1, left : currentLeft+'px',top  : currentTop+'px',width: currentWidth+'px'},3000);
+				tempItem.css({
+				   left : currentLeft+'px',
+				   top  : currentTop+'px',
+				   width: currentWidth+'px'
+				});
+				$('#content').append(tempItem);
 				itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
 				currentLeft += currentWidth + 10;
 				
 			}
 			
-			delete itemPos;
-			delete tempItem;
-			delete imgVal;
-			
-	}
-	function doSomeBlaBla(temp,leftT,topT,widthT){
-		temp.animate({opacity:1, left : leftT+'px',top  : topT+'px',width: widthT+'px'},animateValue);
 	}
 	window.onload = function(){
 			totalWidth = $(window).width();
 			baseLeft = totalWidth * 0.8 *0.35;
 			baseTop = $('#content').height() * 0.8 * 0.3;
 			setTimeout(function (){
-				structureElements(true)
+				structureElements()
 			},50);
 	};
-</script>
-<!-- Script loading -->
-<script src="jquery.js"></script>
-<script src="parser.js"></script>
