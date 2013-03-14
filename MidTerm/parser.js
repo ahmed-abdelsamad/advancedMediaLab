@@ -395,9 +395,11 @@ function Item(){
 		
 		if(this.lat != null && this.lon != null){
 			div.attr('lat',this.lat).attr('lon',this.lon);
+			lat = this.lat;
+			lon = this.lon
 			div.append($('<div>').addClass('map').click(function (e){
 				e.stopPropagation();
-				fetchMap(this);
+				fetchMap(lat,lon,this);
 			})); //attr('onClick','fetchMap(this)')
 		}
 		
@@ -441,12 +443,6 @@ function Item(){
 		
 		div.attr('ondragstart','drag(event)');
 		div.attr('draggable','true');
-		//div.bind('click',"console.log('a');",false);
-		/*div = document.createElement("div");
-		content = document.createElement("h1");
-		content.innerHTML  = this.type;
-		console.log(content.innerHTML );
-		div.appendChild(content);*/
 		return div;
 	}
 }
@@ -616,15 +612,17 @@ for(a = 0 ; a < items.length;a++){
 }
 
 var escapeAction;
-function fetchMap(src){
+function fetchMap(lat,lon,src){
 	moveMe(currentDiv,false);
 	escapeAction = 'map';
 	src = $(src);
-	var lat=src.attr("lat");
-	var lon=src.attr("lon");
-
+	//src.hide();
+	//var lat=src.attr("lat");
+	//var lon=src.attr("lon");
+	
 	
 	var coords = lat + ',' + lon;
+	console.log(lat);
 	src.css({'border-style':'solid','background-color':'green'});
 	var img_url = 'http://maps.google.co.uk?q='+ coords+ '&zoom=60&output=embed';
 	var iframe = $('<iframe>').css({width:'600px','height':'480px'}).attr('src',img_url);
