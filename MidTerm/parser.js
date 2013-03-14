@@ -440,6 +440,7 @@ function Item(){
 				img.attr('src',this.opinions[o].image);
 				img.attr('width','32px');
 				img.css('width','32px');
+				img.css('margin-left','4px');
 				if(o > 0)
 				opinionsDiv.append($('<hr>'));
 
