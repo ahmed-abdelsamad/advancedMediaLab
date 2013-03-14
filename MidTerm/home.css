@@ -120,14 +120,31 @@ html[xmlns] .author {
 	background-color:green;
 	float:left;
 	width:1%;
+	padding:1px;
 }
 
 #drop{
 	overflow:hidden;
 	width:1%;
 	height:10%;
+	visibility:hidden;
+	border:dashed;
+	border-color:black;
+	border-width:2px;
+	height:10%;
+	left:0.3%;
+	position:fixed;
+	text-align:center;
 }
-#favourites.drag , #drop.drag{
+
+.vertical{
+	 margin-top:7%;
+}
+#drop.drag{
+		visibility:visible;
+		width:14%;
+}
+#favourites.drag {
 		width:15%;
 }
 
@@ -140,7 +157,8 @@ html[xmlns] .author {
 }
 
 #favourites:hover #drop{
-	width:15%;
+	width:14%;
+	visibility:visible;
 }
 
 #favourites .img{

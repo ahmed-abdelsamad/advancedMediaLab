@@ -659,20 +659,33 @@ function escape(){
 	
 }
 
+function moveHelper(id){
+	msg = "div[itemid='" + id + "']";
+	moveMe($(msg),true);
+}
 function AdjustFixedPos(){
 	$('#favourites').find('.img').remove();
 	if(localStorage.getItem('fav') != null){
 		fav = JSON.parse(localStorage.fav);
 		for(i=0;i<fav.length;i++){
 			id = fav[i];
+			name = "div[itemid='" + id + "']";
+			name = "$(\"" + name + ")\")";
 			src = $("div[itemid='" + id + "']");
-				src.find('.img').clone().attr('itemid',id).click(function (ev){
-				moveMe(src,true);
-			ev.stopPropagation();
-			}).bind('drop',function (e){
+			
+			(function (tempId){
+			src.find('.img').clone().attr('itemid',id).click(function (ev){
+				//moveMe(src,true);
+				moveHelper(tempId);
+				ev.stopPropagation();
+			//ev.stopPropagation();
+			
+			})
+			.bind('drop',function (e){
 				e.preventDefault;
 				e.stopPropagation;
 			}).appendTo($('#favourites'));
+			}(id))
 		}
 		
 	}
