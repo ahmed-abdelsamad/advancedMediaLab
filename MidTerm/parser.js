@@ -10,7 +10,7 @@ var imgType = '.jpg';
 
 JString = [{
 					"item-type":"restaurant",
-					 "trust-percent":"91",
+					 "trust-percent":"40",
 					 "review-score":"80",
 					 "meta": {
 						"name": "Pizza hut",
@@ -200,7 +200,7 @@ JString = [{
 				},
 				{
 					"item-type":"restaurant",
-					 "trust-percent":"91",
+					 "trust-percent":"55",
 					 "review-score":"80",
 					 "meta": {
 						"name": "Pizza hut",
@@ -260,7 +260,7 @@ JString = [{
 				,
 				{
 					"item-type":"software",
-					"trust-percent":"100",
+					"trust-percent":"34",
 					"review-score":"100",
 					"meta": {
 						"name": "Linux",
@@ -291,6 +291,15 @@ JString = [{
 /*
  * Opinion Class
  */
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
  
 /*
  * Generic Class for Item
@@ -389,9 +398,17 @@ function Item(){
 		img = $('<img>').attr('src',this.image).addClass('img');
 		img.attr('draggable','false');
 		div = $('<div>').addClass('item').attr('itemId',this.id).append(img).append(header);
-		if(this.trust > 90){
-			div.append($('<div>').addClass('star').attr('title',"Trust: " + this.trust));
-		}
+		
+		n = this.trust;
+		console.log(n);
+		g=Math.round((255*n)/100)
+		r=Math.round((255*(100-n))/100); 
+		b=0
+		color = rgbToHex(r,g,b);
+		console.log(color);
+		//if(this.trust > 90){
+			div.append($('<div>').addClass('star').attr('title',"Trust: " + this.trust).css('background-color',color));
+		//}
 		
 		if(this.lat != null && this.lon != null){
 			div.attr('lat',this.lat).attr('lon',this.lon);
