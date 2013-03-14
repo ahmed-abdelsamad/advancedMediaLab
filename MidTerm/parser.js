@@ -404,7 +404,7 @@ function Item(){
 		}
 		
 		if(this.reviewScore != null){
-			div.append($('<progress value="0" max="100" id="progBar">').html(this.reviewScore));
+			div.append($('<progress value="' + (this.reviewScore) +'" max="100" id="progBar">').html);
 			
 		}
 		

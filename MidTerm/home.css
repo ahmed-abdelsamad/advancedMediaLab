@@ -197,3 +197,7 @@ html[xmlns] .author {
 	text-align:left;
 	overflow-y: auto;
 }
+#progBar{
+	margin-bottom:10px;
+	margin-left:auto;
+}
