@@ -404,7 +404,8 @@ function Item(){
 		}
 		
 		if(this.reviewScore != null){
-			div.append($('<h3>').html(this.reviewScore));
+			div.append($('<progress value="' + (this.reviewScore) +'" max="100" id="progBar">').html);
+			
 		}
 		
 		if(this.opinions.length > 0){
