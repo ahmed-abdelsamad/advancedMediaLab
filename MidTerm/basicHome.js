@@ -1,4 +1,5 @@
 function structureElements(){
+		init();
 		totalWidth = $(window).width();
 		width = (totalWidth*0.8)/5;
 		width -= 10;
@@ -12,7 +13,7 @@ function structureElements(){
 			currentTop = 10
 			//width = 500;
 			tempItem = items[0].print(0);
-			img = tempItem.find('img');
+			img = tempItem.find('.img');
 			imgVal = new Image();
 			imgVal.src = img.attr('src');	
 			currentWidth = width;
@@ -28,6 +29,9 @@ function structureElements(){
 			   top :  currentTop +'px',
 			   width: currentWidth+'px'
 			});
+			tempItem.attr('prevLeft',currentLeft);
+			tempItem.attr('prevTop',currentTop);
+			tempItem.attr('prevWidth', currentWidth);
 			$('#content').html(tempItem);
 			itemPos.push(Array());
 			itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
@@ -35,7 +39,7 @@ function structureElements(){
 			
 			for(i = 1;i<items.length;i++){
 				tempItem = items[i].print(i);
-				img = tempItem.find('img');
+				img = tempItem.find('.img');
 				imgVal = new Image();
 				imgVal.src = img.attr('src');	
 				currentWidth = width;
@@ -126,12 +130,16 @@ function structureElements(){
 				   top  : currentTop+'px',
 				   width: currentWidth+'px'
 				});
+				tempItem.attr('prevLeft',currentLeft);
+				tempItem.attr('prevTop',currentTop);
+				tempItem.attr('prevWidth', currentWidth);
 				$('#content').append(tempItem);
 				itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
 				currentLeft += currentWidth + 10;
 				
 			}
 			
+			AdjustFixedPos();
 	}
 	window.onload = function(){
 			totalWidth = $(window).width();

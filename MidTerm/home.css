@@ -27,11 +27,12 @@ body{
 
 #content{
 	position:relative;
-	margin: 0 auto;
-	height:80%;
+	margin: 0 15%;
+	height:100%;
 	width:80%;
 	padding:10px;
 }
+
 
 #footer{
 	width:100%;
@@ -41,15 +42,27 @@ body{
 }
 
 .star{
-	position:absolute;
+/*	position:absolute;
 	left:10px;
 	top:10px;
-	height:20px;
+	height:10%px;
 	width:10%;
-	background-color:gray;
+	
 	/* Add an Image*/
+	max-width:32px;
+	max-height:32px;
+	background-color:gray;
+    height: 10%;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 10%;
 }
 
+
+.authorImage{
+	
+}
 .item{
 	box-shadow: 0px 0px 10px #888888;
 	border:2px hidden;
@@ -79,12 +92,17 @@ body{
 }
  
 .author {
-	width:75%;
+	width:90%;
+	margin-left:10%;
 	display: inline-block;
 }
  
-html[xmlns] .clearfix {
-	display: author;
+#main{
+	width:100%;
+	height:80%;
+}
+html[xmlns] .author {
+	display: block;
 }
  
 * html .author {
@@ -101,15 +119,68 @@ html[xmlns] .clearfix {
 	border-radius:10px 10px 0px 0px;
 }
 
+#favourites{
+	height:100%;
+	background-color:green;
+	float:left;
+	width:1%;
+}
+
+#drop{
+	width:1%;
+	height:10%;
+}
+#favourites.drag , #drop.drag{
+		width:15%;
+}
+
+#favourites.drag img{
+	display:block;
+}
+
+#favourites:hover{
+	width:15%;
+}
+
+#favourites:hover #drop{
+	width:15%;
+}
+
+#favourites .img{
+	display:none;
+}
+
+#favourites:hover .img{
+	display:block;
+}
+
+
+
+
+
+#favourites .img{
+	margin-bottom:5px;
+	margin-left:5px;
+	border-radius:0px;
+}
+
+#favourites .img:first-child{
+	margin-top:20%;
+	border-radius:10px 10px 0px 0px;
+}
+
+
 .map{
+	max-width:32px;
+	max-height:32px;
 	background-image: url("map.png");
-    background-size: 32px 32px;
-    height: 32px;
+    background-size: 100% 100%;
+    height: 10%;
     opacity: 0.7;
     position: absolute;
     right: 5px;
     top: 5px;
-    width: 32px;
+    width: 10%;
 }
 
 .map:hover{
@@ -119,4 +190,5 @@ html[xmlns] .clearfix {
 
 .opinion{
 	text-align:left;
+	overflow-y: auto;
 }

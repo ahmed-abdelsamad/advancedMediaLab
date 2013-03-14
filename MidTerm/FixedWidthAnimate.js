@@ -1,5 +1,6 @@
 animateValue = 3000; // 1000
 	function structureElements(animate){
+		init();
 		totalWidth = $(window).width();
 		noOfitems = (totalWidth*0.8)/(226*0.8)
 		width = (totalWidth*0.8)/5;
@@ -43,6 +44,9 @@ animateValue = 3000; // 1000
 			   		top :  currentTop +'px',
 			   		width: currentWidth+'px'
 				});
+				tempItem.attr('prevLeft',currentLeft);
+				tempItem.attr('prevTop',currentTop);
+				tempItem.attr('prevWidth', currentWidth);
 				$('#content').append(tempItem);
 			}
 			itemPos.push(Array());
@@ -159,6 +163,8 @@ animateValue = 3000; // 1000
 				currentLeft += currentWidth + 10;
 				
 			}
+			
+			AdjustFixedPos();
 			
 			delete itemPos;
 			delete tempItem;

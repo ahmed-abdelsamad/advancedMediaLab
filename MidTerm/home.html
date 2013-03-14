@@ -14,7 +14,7 @@
 <body onresize="structureElements()">
 <div id="header"> 
   <!-- Place Header Data -->
-  <div id='navigation'>	
+  <!--<div id='navigation'>	
   	<ul id="nav">
         <li><a href="index.html" title="return to front page" >Communication (Respond)</a></li>
         <li class='second-level'><a href="about.html" title="learn more about us">Mini Dialogue (Job-People-Places)</a>
@@ -29,12 +29,19 @@
         <li><a href="contact.html" title="contact us">Translation</a></li>
         <li><a href="contact.html" title="contact us">Paragraphh Writing</a></li>
       </ul>
-  </div>
+  </div>-->
 </div>
-<div id="content">
-  <div class='item'> <img class='img' width='480' height="360" src="../Lab2/obama.jpg"/>
-    <div class='star'></div>
-  </div>
+<div id='main'>
+	<div id="favourites" ondragleave="dragLeave(event)" onmouseout="dragLeave(event)">
+    <div id='drop' style=";position:fixed;background-color:blue" ondrop='drop(event)' ondragover="allowDrop(event);" ondragleave="dragLeave(event)">
+    	Drag To ME
+    </div>
+    </div>
+    <div id="content" onclick="escape();">
+      <div class='item'> <img class='img' width='480' height="360" src="../Lab2/obama.jpg"/>
+        <div class='star'></div>
+      </div>
+    </div>
 </div>
 <div id="footer"> 
   <!-- Place footer Data --> 

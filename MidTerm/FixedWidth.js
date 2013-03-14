@@ -1,6 +1,6 @@
 function structureElements(){
 		totalWidth = $(window).width();
-		
+		init();
 		
 		noOfitems = (totalWidth*0.8)/(226*0.8)
 		//width = (totalWidth*0.8)/3;
@@ -122,13 +122,17 @@ function structureElements(){
 				   left : currentLeft+'px',
 				   top  : currentTop+'px',
 				   width: currentWidth+'px'
-				});	
+				});
+				tempItem.attr('prevLeft',currentLeft);
+				tempItem.attr('prevTop',currentTop);
+				tempItem.attr('prevWidth', currentWidth);	
 				$('#content').append(tempItem);
 				itemPos[row][col++] = {left:currentLeft,width:currentWidth,height:tempItem.height(),top:currentTop};
 				currentLeft += currentWidth + 10;
 				
 			}
 			
+			AdjustFixedPos();
 	}
 	window.onload = function(){
 			console.log("hello");

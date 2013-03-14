@@ -1,6 +1,7 @@
 
 animateValue = 3000; // 1000
 	function structureElements(animate){
+		init();
 		totalWidth = $(window).width();
 		width = Math.round((totalWidth*0.8)/5);
 		width -= 10;
@@ -43,6 +44,9 @@ animateValue = 3000; // 1000
 			   		top :  currentTop +'px',
 			   		width: currentWidth+'px'
 				});
+				tempItem.attr('prevLeft',currentLeft);
+				tempItem.attr('prevTop',currentTop);
+				tempItem.attr('prevWidth', currentWidth);
 				$('#content').append(tempItem);
 			}
 			/*tempItem.animate({opacity:1},500).css({
@@ -178,6 +182,7 @@ animateValue = 3000; // 1000
 				
 			}
 			
+			AdjustFixedPos();
 			delete itemPos;
 			delete tempItem;
 			delete imgVal;

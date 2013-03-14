@@ -387,9 +387,10 @@ function Item(){
 		
 		header = $('<h2>').html(this.name);
 		img = $('<img>').attr('src',this.image).addClass('img');
+		img.attr('draggable','false');
 		div = $('<div>').addClass('item').attr('itemId',this.id).append(img).append(header);
 		if(this.trust > 90){
-			div.append($('<div>').addClass('star').html(i));
+			div.append($('<div>').addClass('star'));
 		}
 		
 		if(this.lat != null && this.lon != null){
@@ -411,10 +412,11 @@ function Item(){
 				img = $('<img>');
 				img.attr('src',this.opinions[o].image);
 				img.attr('width','32px');
+				img.css('width','32px');
 				if(o > 0)
 				opinionsDiv.append($('<hr>'));
 
-				left = $('<div>').append(img).css({'float':'left','width':'25%'});
+				left = $('<div>').append(img).css({'float':'left','width':'32px'});
 				right = $('<div>').append($('<h3>').html(this.opinions[o].author)).addClass('author');
 				right.append(this.opinions[o].opinion);
 				mainDiv = $('<div>').append(left);
@@ -428,6 +430,8 @@ function Item(){
 				
 			}
 			div.append(opinionsDiv);
+		}else{
+			div.append($('<div>').addClass('opinion').css('display','none'));
 		}
 		
 		div.click(function (e){
@@ -435,6 +439,8 @@ function Item(){
 			e.stopPropagation();
 		});
 		
+		div.attr('ondragstart','drag(event)');
+		div.attr('draggable','true');
 		//div.bind('click',"console.log('a');",false);
 		/*div = document.createElement("div");
 		content = document.createElement("h1");
@@ -506,9 +512,44 @@ var prevTop;
 var prevLeftF;
 var prevTopF;
 var moving = false;
+
+function init(){
 midLeft = $(window).width()*0.35;
 midTop = $(window).height()*0.4;
+}
+
+init();
 //$('<div>').css({'top':'0','left':'0px','background-color':'black','width':'200%','height':'200%','position':'absolute','opacity':'0','z-index':-4}).appendTo('body').attr('id','tempDiv');
+
+function MoveForward(div){
+		(function(temp){
+		currentDiv = $(temp);
+		prevLeft = currentDiv.css('left');
+		prevTop = currentDiv.css('top');
+		prevLeftF = currentDiv.offset().left;
+		prevTopF = currentDiv.offset().top;
+		prevWidth = currentDiv.css('width');
+		//currentDiv.attr('prevLeft',prevLeft);
+		//currentDiv.attr('prevTop',prevTop);
+		//currentDiv.attr('prevWidth', prevWidth);
+		currentDiv.find('.opinion').hide();
+		escapeAction = 'item';
+		moving = true;
+		currentDiv.css({'z-index':4,position:'fixed',left:currentDiv.offset().left,top:currentDiv.offset().top}).animate({left:midLeft+'px',top:midTop+'px'},300,
+		function (){
+			(function (temp,prevWidth){	
+				temp.find('.opinion').slideDown(300 , function (){
+				newWidth = prevWidth.substring(0,prevWidth.length-2);
+				temp.animate({width:newWidth*2});
+				moving = false;
+			});	
+				})(currentDiv,prevWidth)
+			});
+		}(div)
+		)
+	
+}
+
 function moveMe(div,bool){
 	if(bool)
 		removeMap();
@@ -517,53 +558,51 @@ function moveMe(div,bool){
 			return;
 		}
 	}
-	/*if($(div).attr('moving') == 'moving'){
+	
+	if($(div).attr('moving') == 'moving'){
 		console.log('no can do');
 		return;
-	}*/
+	}
+	
 	if(moving){
 		if(currentDiv != null)
 			if($(div).attr('itemid') == currentDiv.attr('itemid'))
 		return;
 	}
+	
 	if(currentDiv != null){
-		//console.log('hello');
-		// Mov Current Div back;
-		//$('#tempDiv').css({'z-index':-4}).animate({'opacity':0},300);
-		temp = currentDiv;
-		currentDiv.animate({left : prevLeftF,top  : prevTopF,'z-index':0},300
-		,function (){
-				temp.css({position:'absolute','left':temp.attr('prevLeft'),'top':temp.attr('prevTop')})
-		}
-		).find('.opinion').hide();
-		
 		
 		if($(div).attr('itemid') == currentDiv.attr('itemid')){
+		(function (temp,a,b){
+			temp.animate({width: temp.attr('prevWidth')+'px'}, function (){
+			temp.find('.opinion').slideUp(400
+		,function (){
+				temp.animate({left : temp.attr('prevLeftF')+'px',top  : temp.attr('prevTopF') +'px','z-index':0}, function (){
+					temp.css({position:'absolute','left':temp.attr('prevLeft') +'px','top':temp.attr('prevTop')+'px'});
+				});
+		}
+		)
+		});
+		})(currentDiv,prevLeftF,prevTopF)
+		
 			currentDiv = null;
 			return;	
+		}else{
+				(function (temp,a,b){
+					temp.animate({left : temp.attr('prevLeftF')+'px',top  : temp.attr('prevTopF')+'px',width: temp.attr('prevWidth')+'px'},400, function (){
+						temp.find('.opinion').slideUp(400,function (){
+						//temp.animate({}, function (){
+							temp.css({position:'absolute','left':temp.attr('prevLeft')+'px','top':temp.attr('prevTop')+'px','z-index':0});
+						//});
+						})
+					});
+				})(currentDiv,currentDiv.attr('prevleft'),currentDiv.attr('prevTop'))
 		}
+		
+		
 	}
-	currentDiv = $(div);
+		MoveForward(div);
 	
-	prevLeft = currentDiv.css('left');
-	prevTop = currentDiv.css('top');
-	prevLeftF = currentDiv.offset().left;
-	prevTopF = currentDiv.offset().top;
-	
-	currentDiv.attr('prevLeft',prevLeft);
-	currentDiv.attr('prevTop',prevTop);
-	currentDiv.find('.opinion').hide();
-	//$('#tempDiv').css({'z-index':3}).animate({'opacity':0.8},300);
-	//currentDiv.attr('moving','true');
-	escapeAction = 'item';
-	moving = true;
-	currentDiv.css({'z-index':4,position:'fixed',left:currentDiv.offset().left,top:currentDiv.offset().top}).animate({left:midLeft+'px',top:midTop+'px'},300,
-	function (){
-		(function (temp){	
-		temp.find('.opinion').slideDown(300);
-		moving = false;
-			})(currentDiv)
-		});
 }
 delete i;
 delete x;
@@ -597,8 +636,6 @@ function fetchMap(src){
 		$('#mapholder').css('z-index',100);
 		
     });
-	//document.getElementById("mapholder").innerHTML="<iframe style='width:600px;height:480px' src='"+img_url+"'></iframe>";
-	//ev.preventDefault();
 }
 
 
@@ -619,8 +656,51 @@ function escape(){
 	
 	
 }
+
+function AdjustFixedPos(){
+	$("div.item").each(function(index, element) {
+        $(this).attr('prevLeftF',$(this).offset().left);
+		$(this).attr('prevTopF',$(this).offset().top);
+		$(this).attr('prevLeft',$(this).css('left').replace('px',''));
+		$(this).attr('prevTop',$(this).css('top').replace('px',''));
+		$(this).attr('prevWidth',$(this).css('width').replace('px',''));
+    });
+}
 document.onkeydown=function(e){
 				switch(e.which){
 					case 27:escape();
 				}
 			}
+
+var dragged = false;
+function drag(e){
+	dragged = true;
+	$('#favourites,#drop').addClass('drag');
+	var dragIcon = document.createElement('img');
+	dragIcon.src = 'map.png';//$(div).find('.img').attr('src')
+	dragIcon.width = 100;
+	e.dataTransfer.setDragImage(dragIcon, -10, -10);
+	e.dataTransfer.setData("id",e.target.getAttribute('itemid'));
+}
+
+//document.getElementById('favourites').addEventListener('drop', drop, false);
+function drop(e){
+	dragged = false;
+	id  = "div[itemid='" + e.dataTransfer.getData('id') + "']";
+	src = $(id);//.css('background-color','blue');
+	//$(e.target).append();
+	src.find('.img').clone().attr('itemid',e.dataTransfer.getData('id')).click(function (ev){
+			moveMe(src,true);
+			ev.stopPropagation();
+		}).appendTo(e.target);
+	
+}
+
+function allowDrop(e){	
+	e.preventDefault();
+}
+
+function dragLeave(e){
+	if(!dragged)
+		$('#favourites,#drop').removeClass('drag');	
+}

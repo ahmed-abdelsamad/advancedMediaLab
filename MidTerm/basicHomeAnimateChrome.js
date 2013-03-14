@@ -1,6 +1,7 @@
 
 	animateValue = 3000; // 1000
 	function structureElements(animate){
+		init();
 		totalWidth = $(window).width();
 		width = (totalWidth*0.8)/5;
 		baseLeft = totalWidth * 0.8 *0.35;
@@ -38,6 +39,9 @@
 				  position: 'absolute',
 				  opacity:'1',
 				})
+				tempItem.attr('prevLeft',currentLeft);
+				tempItem.attr('prevTop',currentTop);
+				tempItem.attr('prevWidth', currentWidth);
 				$('#content').append(tempItem);
 				tempItem.animate({left:currentLeft+'px',top:currentTop+'px',opacity:1},animateValue);
 			}else{
@@ -160,6 +164,9 @@
 					   width: currentWidth+'px',
 					   opacity:'0',
 					});
+					tempItem.attr('prevLeft',currentLeft);
+					tempItem.attr('prevTop',currentTop);
+					tempItem.attr('prevWidth', currentWidth);
 					(function (tempT,leftT,topT,widthT){
 						window.setTimeout(function (){
 							doSomeBlaBla(tempT,leftT,topT,widthT)
@@ -181,13 +188,18 @@
 				
 			}
 			
+			AdjustFixedPos();
 			delete itemPos;
 			delete tempItem;
 			delete imgVal;
 			
 	}
 	function doSomeBlaBla(temp,leftT,topT,widthT){
-		temp.animate({opacity:1, left : leftT+'px',top  : topT+'px',width: widthT+'px'},animateValue);
+		temp.animate({opacity:1, left : leftT+'px',top  : topT+'px',width: widthT+'px'},animateValue,function (){
+			if(temp.attr('itemid') == items.length - 1){
+				AdjustFixedPos();
+			}
+		});
 	}
 	window.onload = function(){
 			totalWidth = $(window).width();
