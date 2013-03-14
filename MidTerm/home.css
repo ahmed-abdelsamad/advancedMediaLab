@@ -126,7 +126,7 @@ html[xmlns] .author {
 #drop{
 	overflow:hidden;
 	width:1%;
-	height:10%;
+	height:150px;
 	visibility:hidden;
 	border:dashed;
 	border-color:black;
@@ -186,7 +186,7 @@ html[xmlns] .author {
 
 
 #drop + img{
-	margin-top:25%;
+	margin-top:130px;
 }
 
 .review{
