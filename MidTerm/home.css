@@ -44,7 +44,7 @@ body{
 	position:absolute;
 	left:10px;
 	top:10px;
-	height:10%;
+	height:20px;
 	width:10%;
 	background-color:gray;
 	/* Add an Image*/
@@ -59,7 +59,38 @@ body{
 	overflow:hidden;
 	background-color:white;
 	cursor:pointer;
+	padding:1px;
+	z-index:1;
 }
+
+.author h3{
+	width:100%;
+	color:blue;
+}
+
+
+.author:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.author {
+	width:75%;
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: author;
+}
+ 
+* html .author {
+	height: 1%;
+}
+
 .img{
 	/*width:480px;*/
 	/*margin-left:10px;
@@ -84,4 +115,8 @@ body{
 .map:hover{
 	opacity:1;
 	cursor:pointer;
+}
+
+.opinion{
+	text-align:left;
 }

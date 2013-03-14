@@ -9,7 +9,7 @@ function structureElements(){
 		delete itemPos;
 		delete row;
 		delete col;
-		/*if(totalWidth < 300){
+		if(totalWidth < 300){
 			noOfitem = 1;
 			width = 226*0.8;
 			width -= 10;
@@ -17,7 +17,7 @@ function structureElements(){
 			noOfitems = 3;
 			width = (totalWidth*0.8)/3;
 			width -= 10;
-		} */ // 3 items per page
+		}  // 3 items per page
 		row = 0;
 		col = 0;
 		itemPos = Array();
