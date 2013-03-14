@@ -641,14 +641,8 @@ var escapeAction;
 function fetchMap(lat,lon,src){
 	moveMe(currentDiv,false);
 	escapeAction = 'map';
-	src = $(src);
-	//src.hide();
-	//var lat=src.attr("lat");
-	//var lon=src.attr("lon");
-	
-	
+	src = $(src);	
 	var coords = lat + ',' + lon;
-	console.log(lat);
 	src.css({'border-style':'solid','background-color':'green'});
 	var img_url = 'http://maps.google.co.uk?q='+ coords+ '&zoom=60&output=embed';
 	var iframe = $('<iframe>').css({width:'600px','height':'480px'}).attr('src',img_url);
@@ -656,6 +650,7 @@ function fetchMap(lat,lon,src){
 	loadingImg.attr('id','loadingImg');
 	$('body').append(loadingImg);
 	$('#mapholder').html(iframe);
+	//$('#mapholder').append($('<div>').addClass('close'));
 	iframe.load(function(e) {
 		loadingImg.fadeOut();
 		$('#mapholder').fadeIn(500,function (){

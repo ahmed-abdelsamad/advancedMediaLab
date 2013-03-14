@@ -217,11 +217,22 @@ html[xmlns] .author {
 .opinion{
 	text-align:left;
 	overflow-y: auto;
-	border:2px solid;
-	border-radius:25px;
 	
 }
 
+.close{
+	position:absolute;
+	left:0px;
+	top:0px;
+	background-image:url(star.png);
+	position: absolute;
+	left: 50px;
+	top: -1px;
+	z-index: 106;
+	width: 50px;
+	height: 50px;
+	background-image: url(star.png);
+}
 
 #loadingImg{
 	position:fixed;
