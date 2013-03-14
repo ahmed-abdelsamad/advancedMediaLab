@@ -319,6 +319,8 @@ function Item(){
 	this.setReviewScore = function(val){
 		if(val != null)
 		this.reviewScore = val;
+		else
+		this.reviewScore = 0;
 	}
 	
 	this.Meta = function (name,category,location,image){
@@ -731,9 +733,9 @@ function drag(e){
 	dragged = true;
 	$('#favourites,#drop').addClass('drag');
 	var dragIcon = document.createElement('img');
-	dragIcon.src = 'map.png';//$(div).find('.img').attr('src')
-	dragIcon.width = 100;
-	e.dataTransfer.setDragImage(dragIcon, -10, -10);
+	dragIcon.src = 'star.png';//$(div).find('.img').attr('src')
+	dragIcon.width = '10'
+	e.dataTransfer.setDragImage(dragIcon, 0, 0);
 	e.dataTransfer.setData("id",e.target.getAttribute('itemid'));
 }
 
@@ -759,7 +761,6 @@ function drop(e){
 			moveMe(src,true);
 			ev.stopPropagation();
 		}).bind('drop',function (e){
-			console.log('hi Image');
 			e.preventDefault;
 			e.stopPropagation;
 		}).appendTo($('#favourites'));
@@ -782,3 +783,12 @@ function trackBack(e){
 	}
 }
 
+function freeFav(){
+	r=confirm("Are you sure you want to delete your favourites");
+	if(r == true){
+		localStorage.clear();
+		fav = null;
+		AdjustFixedPos();
+		structureElements();
+	}
+}

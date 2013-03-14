@@ -4,15 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Trust Me!</title>
 <link rel="stylesheet" media="all" href="reset.css" />
-<link rel="stylesheet" media="screen and (min-width:300px) and (max-width:999px)" href="style300.css" />
-<link rel="stylesheet" media="screen and (min-width:1000px) and (max-width:1499px)" href="style1000.css" />
-<link rel="stylesheet" media="screen and (min-width:1500px)" href="style1500.css" />
 <link rel="stylesheet" type="text/css" href="default.css" media="screen">
 <link rel='stylesheet' media='screen' href="horziontal_menu.css" />
 <link rel="stylesheet" media="screen" href="home.css" />
 </head>
 <body onresize="structureElements()" ondragend="trackBack(event)">
 <div id="header"> 
+<h1 style="font-size:24px;">Trust</h1>
+<h2>Crunch All You Want. We'll Make Trust</h2>
   <!-- Place Header Data -->
   <!--<div id='navigation'>	
   	<ul id="nav">
@@ -35,6 +34,7 @@
 	<div id="favourites" ondragleave="dragLeave(event)" onmouseout="dragLeave(event)">
     <div id='drop' ondrop='drop(event)' ondragover="allowDrop(event);" ondragleave="dragLeave(event)">
 		<div class="vertical">Drag Favourites Here</div>
+        <button onclick="freeFav()">Clear Favourites</button>
     </div>
     </div>
     <div id="content" onclick="escape();">
