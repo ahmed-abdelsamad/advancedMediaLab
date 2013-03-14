@@ -166,6 +166,7 @@ html[xmlns] .author {
 	border-radius:10px 10px 0px 0px;
 }
 
+
 #drop + img{
 	margin-top:25%;
 }
@@ -196,4 +197,23 @@ html[xmlns] .author {
 .opinion{
 	text-align:left;
 	overflow-y: auto;
+}
+
+
+#loadingImg{
+	position:fixed;
+	left:40%;
+	top:30%;
+	width:15%;
+	z-index:10;
+	-webkit-animation:rotate 5s infinite; /* Safari and Chrome */
+	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin:50% 50%;
+}
+
+
+@-webkit-keyframes rotate
+{
+0%   {-webkit-transform: rotate(0deg);}
+100% {-webkit-transform: rotate(360deg); }
 }

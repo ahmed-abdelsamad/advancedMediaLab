@@ -626,8 +626,12 @@ function fetchMap(lat,lon,src){
 	src.css({'border-style':'solid','background-color':'green'});
 	var img_url = 'http://maps.google.co.uk?q='+ coords+ '&zoom=60&output=embed';
 	var iframe = $('<iframe>').css({width:'600px','height':'480px'}).attr('src',img_url);
+	loadingImg = $('<img>').attr('src','map.png');
+	loadingImg.attr('id','loadingImg');
+	$('body').append(loadingImg);
 	$('#mapholder').html(iframe);
 	iframe.load(function(e) {
+		loadingImg.fadeOut();
 		$('#mapholder').fadeIn(500,function (){
 			$('#mapholder').animate({left:'30%',top:'30%'});
 		});
@@ -638,12 +642,12 @@ function fetchMap(lat,lon,src){
 
 
 function removeMap(){
-	
+		$('#loadingImg').remove();
 		$('#mapholder').animate({left:'-15%',top:'30%'},function (){
 				$('#mapholder').fadeOut(500);
 				$('#mapholder').css('z-index',1);
 		});
-
+		
 		
 }
 function escape(){
