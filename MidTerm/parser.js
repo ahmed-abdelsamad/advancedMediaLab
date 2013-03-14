@@ -431,7 +431,7 @@ function Item(){
 		}
 		
 		div.click(function (e){
-			moveMe(this);
+			moveMe(this,true);
 			e.stopPropagation();
 		});
 		
@@ -510,8 +510,13 @@ midLeft = $(window).width()*0.35;
 midTop = $(window).height()*0.4;
 //$('<div>').css({'top':'0','left':'0px','background-color':'black','width':'200%','height':'200%','position':'absolute','opacity':'0','z-index':-4}).appendTo('body').attr('id','tempDiv');
 function moveMe(div,bool){
-	if(!bool)
+	if(bool)
 		removeMap();
+	else{
+		if(currentDiv == null){
+			return;
+		}
+	}
 	/*if($(div).attr('moving') == 'moving'){
 		console.log('no can do');
 		return;
