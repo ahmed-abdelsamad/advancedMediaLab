@@ -390,14 +390,14 @@ function Item(){
 		img.attr('draggable','false');
 		div = $('<div>').addClass('item').attr('itemId',this.id).append(img).append(header);
 		if(this.trust > 90){
-			div.append($('<div>').addClass('star'));
+			div.append($('<div>').addClass('star').attr('title',"Trust: " + this.trust));
 		}
 		
 		if(this.lat != null && this.lon != null){
 			div.attr('lat',this.lat).attr('lon',this.lon);
 			lat = this.lat;
 			lon = this.lon
-			div.append($('<div>').addClass('map').click(function (e){
+			div.append($('<div>').addClass('map').attr('title','Location on Map').click(function (e){
 				e.stopPropagation();
 				fetchMap(lat,lon,this);
 			})); //attr('onClick','fetchMap(this)')
@@ -408,6 +408,7 @@ function Item(){
 			progress.attr('value',this.reviewScore);
 			progress.attr('max',100);
 			progress.attr('class','progBar');
+			progress.attr('title',"Review Score: " + this.reviewScore);
 			div.append(progress);
 			//div.append($('<progress>') value="' + (this.reviewScore) +'" max="100" id="progBar">').html);
 		}
@@ -726,8 +727,12 @@ function drop(e){
 	}else{
 		fav = JSON.parse(localStorage.fav);
 	}
-	
-	
+	for(t = 0 ; t < fav.length;t++){
+		if(fav[t] == e.dataTransfer.getData('id')){
+			alert('You have already added this item to your favourites');
+			return;
+		}
+	}
 	dragged = false;
 	id  = "div[itemid='" + e.dataTransfer.getData('id') + "']";
 	fav[fav.length] = e.dataTransfer.getData('id');
@@ -759,3 +764,4 @@ function trackBack(e){
 		$('#favourites,#drop').removeClass('drag');	
 	}
 }
+

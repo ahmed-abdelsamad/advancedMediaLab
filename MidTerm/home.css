@@ -52,11 +52,14 @@ body{
 	max-width:32px;
 	max-height:32px;
 	background-color:gray;
-    height: 10%;
+    height: 20px;
     position: absolute;
-    left: 5px;
-    top: 5px;
-    width: 10%;
+    left: -10px;
+    top: -10px;
+	min-width:30px;
+	min-height:30px;
+    width: 20px;
+	border-radius:20px;
 }
 
 
@@ -126,7 +129,6 @@ html[xmlns] .author {
 #drop{
 	overflow:hidden;
 	width:1%;
-	height:150px;
 	visibility:hidden;
 	border:dashed;
 	border-color:black;
@@ -168,9 +170,6 @@ html[xmlns] .author {
 #favourites:hover .img{
 	display:block;
 }
-
-
-
 
 
 #favourites .img{
@@ -239,4 +238,5 @@ html[xmlns] .author {
 .progBar{
 	margin-bottom:10px;
 	margin-left:auto;
+	width:75%;
 }
