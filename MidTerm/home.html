@@ -11,7 +11,7 @@
 <link rel='stylesheet' media='screen' href="horziontal_menu.css" />
 <link rel="stylesheet" media="screen" href="home.css" />
 </head>
-<body onresize="structureElements()">
+<body onresize="structureElements()" ondragend="trackBack(event)">
 <div id="header"> 
   <!-- Place Header Data -->
   <!--<div id='navigation'>	
@@ -33,7 +33,7 @@
 </div>
 <div id='main'>
 	<div id="favourites" ondragleave="dragLeave(event)" onmouseout="dragLeave(event)">
-    <div id='drop' style=";position:fixed;background-color:blue" ondrop='drop(event)' ondragover="allowDrop(event);" ondragleave="dragLeave(event)">
+    <div id='drop' style="height:10%;position:fixed;background-color:blue" ondrop='drop(event)' ondragover="allowDrop(event);" ondragleave="dragLeave(event)">
     	Drag To ME
     </div>
     </div>
@@ -50,7 +50,7 @@
 </div>
 </body>
 </html>
-<script src="basicHome.js"> //basicHome //BasicHomeAnimate.js //BasicHomeAnimateChrome // FixedWidth //FixedWidthAnimate
+<script src="BasicHomeAnimateChrome.js"> //basicHome //BasicHomeAnimate.js //BasicHomeAnimateChrome // FixedWidth //FixedWidthAnimate
 </script>
 <!-- Script loading -->
 <script src="jquery.js"></script>

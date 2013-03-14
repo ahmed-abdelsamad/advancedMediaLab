@@ -410,7 +410,7 @@ function Item(){
 		
 		if(this.opinions.length > 0){
 			opinionsDiv = $('<div>').addClass('opinion').css('display','none');
-			opinionsDiv.append($('<h3>').html('Reviews'));
+			opinionsDiv.append($('<h1>').html('Reviews').addClass('review'));
 			for(o = 0;o < this.opinions.length;o++){
 				img = $('<img>');
 				img.attr('src',this.opinions[o].image);
@@ -657,6 +657,22 @@ function escape(){
 }
 
 function AdjustFixedPos(){
+	$('#favourites').find('.img').remove();
+	if(localStorage.getItem('fav') != null){
+		fav = JSON.parse(localStorage.fav);
+		for(i=0;i<fav.length;i++){
+			id = fav[i];
+			src = $("div[itemid='" + id + "']");
+				src.find('.img').clone().attr('itemid',id).click(function (ev){
+				moveMe(src,true);
+			ev.stopPropagation();
+			}).bind('drop',function (e){
+				e.preventDefault;
+				e.stopPropagation;
+			}).appendTo($('#favourites'));
+		}
+		
+	}
 	$("div.item").each(function(index, element) {
         $(this).attr('prevLeftF',$(this).offset().left);
 		$(this).attr('prevTopF',$(this).offset().top);
@@ -684,15 +700,28 @@ function drag(e){
 
 //document.getElementById('favourites').addEventListener('drop', drop, false);
 function drop(e){
+	if(localStorage.getItem('fav') == null){
+		var fav = [];
+	}else{
+		fav = JSON.parse(localStorage.fav);
+	}
+	
+	
 	dragged = false;
 	id  = "div[itemid='" + e.dataTransfer.getData('id') + "']";
+	fav[fav.length] = e.dataTransfer.getData('id');
 	src = $(id);//.css('background-color','blue');
 	//$(e.target).append();
 	src.find('.img').clone().attr('itemid',e.dataTransfer.getData('id')).click(function (ev){
 			moveMe(src,true);
 			ev.stopPropagation();
-		}).appendTo(e.target);
+		}).bind('drop',function (e){
+			console.log('hi Image');
+			e.preventDefault;
+			e.stopPropagation;
+		}).appendTo($('#favourites'));
 	
+	localStorage.fav = JSON.stringify(fav);
 }
 
 function allowDrop(e){	
@@ -702,4 +731,10 @@ function allowDrop(e){
 function dragLeave(e){
 	if(!dragged)
 		$('#favourites,#drop').removeClass('drag');	
+}
+
+function trackBack(e){
+	if(e.target.id != 'drop'){
+		$('#favourites,#drop').removeClass('drag');	
+	}
 }

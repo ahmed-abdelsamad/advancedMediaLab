@@ -110,10 +110,6 @@ html[xmlns] .author {
 }
 
 .img{
-	/*width:480px;*/
-	/*margin-left:10px;
-	margin-right:10px;*/
-	/*height:360px;*/
 	background-color:green;
 	border:2px hidden;
 	border-radius:10px 10px 0px 0px;
@@ -127,6 +123,7 @@ html[xmlns] .author {
 }
 
 #drop{
+	overflow:hidden;
 	width:1%;
 	height:10%;
 }
@@ -169,7 +166,15 @@ html[xmlns] .author {
 	border-radius:10px 10px 0px 0px;
 }
 
+#drop + img{
+	margin-top:25%;
+}
 
+.review{
+	font-size:20px;
+	margin-left:5%;
+	margin-bottom:2%;
+}
 .map{
 	max-width:32px;
 	max-height:32px;
