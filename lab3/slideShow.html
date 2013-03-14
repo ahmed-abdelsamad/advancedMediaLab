@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Gallery</title>
 <link href="CSS/trial.css" rel="stylesheet" type="text/css" />
+<script src="jquery.js"></script>
 </head>
-
 <body>
 <div id="wrapper">
   <div id="body">
@@ -16,8 +16,31 @@
       </div>
       <div class="scrollable" >
         <div class="items" id="move" style="left:0px;">
-          <div> <img class="active"  id="firstPic" onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);" src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> </div>
-          <div> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> </div>
+        <script>
+			var JString=[{"title":"Sharm El Sheikh","url":"http://memphistours.files.wordpress.com/2011/11/nile_river_aswan_egypt.jpg"},
+		{"title":"Aswan","url":"http://memphistours.files.wordpress.com/2011/11/nile_river_aswan_egypt.jpg"},
+		{"title":"Alexandria","url":"http://0.tqn.com/d/goafrica/1/0/-/E/VI0053_Alexandria_03BD.jpg"},
+		{"title":"Dahab","url":"http://www.richard-seaman.com/Wallpaper/Travel/Egypt/Dahab1.jpg"},
+		{"title":"Cairo","url":"http://upload.wikimedia.org/wikipedia/commons/b/bb/Cairo,_evening_view_from_the_Tower_of_Cairo,_Egypt,_Oct_2004.jpg"}];
+			var objectLength = JString.length;
+			var imgThumbNailString = '';
+			var imgString = '';
+			for ( i = 0; i < objectLength ;){
+				document.write("<div>");
+				for(j = 0 ; j < 4 && i < objectLength; j++){
+				var obj = (JString[i]);
+				imgString = imgString +  "<img  src= ' " + obj.url + "' title='" + obj.title + "' /> \n";
+				document.write("<img class='normal' id='slider-"+ i +"' class='' onclick='changePicture(this);' src='"+ obj.url+"' /> ");
+				i++;
+				}
+				document.write("</div>");
+			}
+				//document.write("<div id='slider'>");
+				//document.write(imgString);
+				//document.write("</div>");
+        </script>
+         <!-- <div> <img class="active"  id="firstPic" onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);" src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> </div>
+          <div> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> <img class="normal"   onclick="changePicture(this);"src="image/pyramid1.jpg" /> </div>-->
         </div>
       </div>
       <div style="float:left">
@@ -29,16 +52,20 @@
 </div>
 </body>
 <script>
+//$('.items div:first-child img:first-child').attr('id','firstPic');
+var finalTurn = 1;
 var turn = 0;
 var left = 0;
 var posFinal = 0;
 var posNow =0;
 var move;
 var animation = true;
-var selected = document.getElementById("firstPic");
+var selected = document.getElementById("slider-0");
+selected.className = 'active';
+$('#Img').attr('src',selected.src);
 function moveLeft(){
 	if(animation){
-		if(turn == 1){
+		if(turn == finalTurn){
 			return;
 		}
 		animation = false;
@@ -90,7 +117,8 @@ function animateLeft(){
 
 function changePicture(clicked){
 	selected.className = "normal";
-	var url = clicked.src.replace("_t", "");
+	//var url = clicked.src.replace("_t", "");
+	var url = clicked.src;
 	document.getElementById('Img').src = url;
 	clicked.className = "active";
 	selected = clicked;
