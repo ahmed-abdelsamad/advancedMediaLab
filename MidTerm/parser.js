@@ -404,8 +404,12 @@ function Item(){
 		}
 		
 		if(this.reviewScore != null){
-			div.append($('<progress value="' + (this.reviewScore) +'" max="100" id="progBar">').html);
-			
+			progress = $('<progress>');
+			progress.attr('value',this.reviewScore);
+			progress.attr('max',100);
+			progress.attr('class','progBar');
+			div.append(progress);
+			//div.append($('<progress>') value="' + (this.reviewScore) +'" max="100" id="progBar">').html);
 		}
 		
 		if(this.opinions.length > 0){
